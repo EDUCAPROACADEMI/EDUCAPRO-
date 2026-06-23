@@ -76,7 +76,7 @@ function abrirModal() {
 if (closeModal) {
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
-        // Desconectar listener de Firebase al cerrar para liberar memoria
+    
         if (FirebaseListener) {
             FirebaseListener();
             FirebaseListener = null;
@@ -196,7 +196,7 @@ document.getElementById('btn-copy-code').addEventListener('click', () => {
     }
 });
 
-// Redirección segura a Google Meet
+
 document.getElementById('btn-go-to-meet').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message').value;
     if (inputAlumno !== "No hay códigos asignados" && inputAlumno.trim() !== "") {
@@ -206,12 +206,7 @@ document.getElementById('btn-go-to-meet').addEventListener('click', () => {
         alert('Aún no hay una clase activa asignada por tu tutor.');
     }
 });
-// --- FUNCIONALIDAD DEL MENÚ LATERAL (SIDEBAR) ---
 
-// 1. Mapeamos cada botón del menú con el ID de su respectiva sección de contenido
-// --- FUNCIONALIDAD DEL MENÚ LATERAL (SIDEBAR) ---
-
-// 1. Mapeamos cada botón del menú con el ID real de tu HTML (cambiado a 'sec-')
 const seccionesMenu = [
     { btnId: 'menu-dashboard', sectionId: 'sec-dashboard' },
     { btnId: 'menu-estudiantes', sectionId: 'sec-estudiantes' },
@@ -224,33 +219,32 @@ const seccionesMenu = [
     { btnId: 'menu-configuracion', sectionId: 'sec-configuracion' }
 ];
 
-// 2. Recorremos el arreglo para asignar los eventos de clic
+
 seccionesMenu.forEach(item => {
     const boton = document.getElementById(item.btnId);
     if (boton) {
         boton.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita que la página se recargue
+            e.preventDefault();
 
-            // Quitar la clase 'active' de todos los botones y ponérsela al seleccionado
+         
             seccionesMenu.forEach(i => {
                 const b = document.getElementById(i.btnId);
                 if (b) b.classList.remove('active');
             });
             boton.classList.add('active');
 
-            // Ocultar todas las secciones y mostrar solo la que corresponde
             seccionesMenu.forEach(i => {
                 const seccion = document.getElementById(i.sectionId);
                 if (seccion) {
                     seccion.style.display = 'none';
-                    seccion.classList.remove('fade-in'); // Quitamos la animación para reiniciarla
+                    seccion.classList.remove('fade-in');
                 }
             });
 
             const seccionActiva = document.getElementById(item.sectionId);
             if (seccionActiva) {
                 seccionActiva.style.display = 'block';
-                // Añadimos un pequeño efecto de animación al aparecer
+           
                 setTimeout(() => {
                     seccionActiva.classList.add('fade-in');
                 }, 10);
