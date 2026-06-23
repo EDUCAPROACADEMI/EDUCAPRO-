@@ -1,48 +1,56 @@
 
-const CLAVES_ALUMNOS_POR_CURSO = {
-    'PRE ICFES': ['KOUSPARYKEVIN', 'educapro99', 'claveIcfes1'],
-    'PROGRAMACIÓN': ['KOUSPARYKEVIN', 'webMaster99', 'claveProg1'],
-    'MARKETING': ['KOUSPARYKEVIN', 'ventasPro', 'claveMkt1'],
-    'REFUERZO': ['KOUSPARYKEVIN', 'ayudaEscolar', 'claveRef1'],
-    'HORARIOS': ['KOUSPARYKEVIN', 'horarioPro', 'claveHorario1']
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDzYJPI9mU7RlewCmeoCKVSQR4DJscnCE8",
+    authDomain: "educapro-academia.firebaseapp.com",
+    databaseURL: "https://educapro-academia-default-rtdb.firebaseio.com",
+    projectId: "educapro-academia",
+    storageBucket: "educapro-academia.firebasestorage.app",
+    messagingSenderId: "283431566568",
+    appId: "1:283431566568:web:89b44ba5a23f0bdd9ddd5d"
 };
 
 
-const CLAVES_TUTORES_POR_CURSO = {
-    'PRE ICFES': ['KOUSPARYKEVIN'],
-    'PROGRAMACIÓN': ['KOUSPARYKEVIN'],
-    'MARKETING': ['KOUSPARYKEVIN'],
-    'REFUERZO': ['KOUSPARYKEVIN'],
-    'HORARIOS': ['KOUSPARYKEVIN']
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+
+const CLAVES_ALUMNOS_POR_COURSE = {
+    'PRE ICFES': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveIcfes1'],
+    'PROGRAMACIÓN': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveProg1'],
+    'MARKETING': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveMkt1'],
+    'REFUERZO': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveRef1'],
+    'HORARIOS': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveHorario1']
 };
 
-let selectedRole = ''; 
-let cursoActivo = ''; 
-
-
-const STORAGE_KEYS = {
-    'PRE ICFES': 'icfes_MeetCode',
-    'PROGRAMACIÓN': 'prog_MeetCode',
-    'MARKETING': 'mkt_MeetCode',
-    'REFUERZO': 'ref_MeetCode',
-    'HORARIOS': 'horarios_MeetCode'
+const CLAVES_TUTORES_POR_COURSE = {
+    'PRE ICFES': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
+    'PROGRAMACIÓN': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
+    'MARKETING': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
+    'REFUERZO': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
+    'HORARIOS': ['D5B213OVW!w_', 'KOUSPARYKEVIN1']
 };
+
+let selectedRole = '';
+let cursoActivo = '';
 
 
 const modal = document.getElementById('modal-password');
 const closeModal = document.getElementById('close-modal');
-
 const stepRoleSelection = document.getElementById('step-role-selection');
 const stepLogin = document.getElementById('step-login');
 const stepTutorDashboard = document.getElementById('step-tutor-dashboard');
 const stepAlumnoDashboard = document.getElementById('step-alumno-dashboard');
 
-const loginTitle = document.getElementById('login-title');
-const loginDescription = document.getElementById('login-description');
 const inputPass = document.getElementById('input-pass');
+const btnSubmitPass = document.getElementById('btn-submit-pass');
 const errorMsg = document.getElementById('error-msg');
 
-const configuracionCursos = [
+
+const botonesCursos = [
     { id: 'btn-pre-icfes', nombre: 'PRE ICFES' },
     { id: 'btn-programacion', nombre: 'PROGRAMACIÓN' },
     { id: 'btn-marketing', nombre: 'MARKETING' },
@@ -50,169 +58,142 @@ const configuracionCursos = [
     { id: 'btn-horarios', nombre: 'HORARIOS' }
 ];
 
-configuracionCursos.forEach(curso => {
-    const boton = document.getElementById(curso.id);
-    if (boton && modal) {
-        boton.addEventListener('click', (e) => {
+botonesCursos.forEach(curso => {
+    const btn = document.getElementById(curso.id);
+    if (btn) {
+        btn.addEventListener('click', (e) => {
             e.preventDefault();
-            cursoActivo = 2026 ? curso.nombre : curso.nombre; 
-            
-            modal.style.display = 'flex'; 
-            stepRoleSelection.style.display = 'block';
-            stepLogin.style.display = 'none';
-            stepTutorDashboard.style.display = 'none';
-            stepAlumnoDashboard.style.display = 'none';
-            if (errorMsg) errorMsg.style.display = 'none';
-            if (inputPass) inputPass.value = '';
+            cursoActivo = curso.nombre;
+            abrirModal();
         });
     }
 });
 
-if (closeModal && modal) {
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
-}
-window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-});
 
-
-const btnSelectTutor = document.getElementById('btn-select-tutor');
-const btnSelectAlumno = document.getElementById('btn-select-alumno');
-
-if (btnSelectTutor) {
-    btnSelectTutor.addEventListener('click', () => {
-        selectedRole = 'tutor';
-        stepRoleSelection.style.display = 'none';
-        stepLogin.style.display = 'block';
-        loginTitle.innerText = `Acceso Tutor | ${cursoActivo}`;
-        loginDescription.innerText = `Contraseña de Tutor para ${cursoActivo}:`;
-        inputPass.value = '';
-        inputPass.focus();
-    });
-}
-
-if (btnSelectAlumno) {
-    btnSelectAlumno.addEventListener('click', () => {
-        selectedRole = 'alumno';
-        stepRoleSelection.style.display = 'none';
-        stepLogin.style.display = 'block';
-        loginTitle.innerText = `Acceso Alumno | ${cursoActivo}`;
-        loginDescription.innerText = `Contraseña de Estudiante para ${cursoActivo}:`;
-        inputPass.value = '';
-        inputPass.focus();
-    });
-}
-
-
-function validar() {
-    if (!inputPass) return;
-    const password = inputPass.value.trim();
-    if (errorMsg) errorMsg.style.display = 'none';
-
-    if (selectedRole === 'tutor') {
-      
-        const listaTutoresCurso = CLAVES_TUTORES_POR_CURSO[cursoActivo];
-        if (listaTutoresCurso && listaTutoresCurso.includes(password)) {
-            stepLogin.style.display = 'none';
-            stepTutorDashboard.style.display = 'block';
-        } else {
-            if (errorMsg) errorMsg.style.display = 'block';
-        }
-    } else if (selectedRole === 'alumno') {
-       
-        const listaAlumnosCurso = CLAVES_ALUMNOS_POR_CURSO[cursoActivo];
-        if (listaAlumnosCurso && listaAlumnosCurso.includes(password)) {
-            stepLogin.style.display = 'none';
-            stepAlumnoDashboard.style.display = 'block';
-            
-            let storageKey = STORAGE_KEYS[cursoActivo];
-            const savedMessage = localStorage.getItem(storageKey) || 'No hay códigos asignados aún por el tutor.';
-            
-            const alumnoInput = document.getElementById('alumno-received-message');
-            if (alumnoInput) alumnoInput.value = savedMessage;
-        } else {
-            if (errorMsg) errorMsg.style.display = 'block';
-        }
+function abrirModal() {
+    if (modal) {
+        modal.style.display = 'flex';
+        resetearModal();
     }
 }
 
-const btnSubmitPass = document.getElementById('btn-submit-pass');
-if (btnSubmitPass) btnSubmitPass.addEventListener('click', validar);
-if (inputPass) {
-    inputPass.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') validar();
+if (closeModal) {
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
     });
 }
 
-
-const btnSendAnnouncement = document.getElementById('btn-send-announcement');
-if (btnSendAnnouncement) {
-    btnSendAnnouncement.addEventListener('click', () => {
-        const tutorInput = document.getElementById('tutor-message');
-        if (!tutorInput) return;
-        const messageToSend = tutorInput.value.trim();
-        if (messageToSend !== "") {
-            let storageKey = STORAGE_KEYS[cursoActivo];
-            localStorage.setItem(storageKey, messageToSend);
-            
-            const successMsg = document.getElementById('tutor-success-msg');
-            if (successMsg) {
-                successMsg.style.display = 'block';
-                setTimeout(() => successMsg.style.display = 'none', 3000);
-            }
-        }
-    });
+function resetearModal() {
+    stepRoleSelection.style.display = 'block';
+    stepLogin.style.display = 'none';
+    stepTutorDashboard.style.display = 'none';
+    stepAlumnoDashboard.style.display = 'none';
+    errorMsg.style.display = 'none';
+    inputPass.value = '';
 }
 
-const btnCopyCode = document.getElementById('btn-copy-code');
-if (btnCopyCode) {
-    btnCopyCode.addEventListener('click', () => {
-        const codeInput = document.getElementById('alumno-received-message');
-        if (!codeInput) return;
-        codeInput.select();
-        codeInput.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(codeInput.value);
+
+document.getElementById('btn-select-tutor').addEventListener('click', () => irALogin('tutor'));
+document.getElementById('btn-select-alumno').addEventListener('click', () => irALogin('alumno'));
+
+function irALogin(rol) {
+    selectedRole = rol;
+    stepRoleSelection.style.display = 'none';
+    stepLogin.style.display = 'block';
+    
+    document.getElementById('login-title').innerText = `Acceso ${rol === 'tutor' ? 'Tutor' : 'Alumno'} - ${cursoActivo}`;
+    document.getElementById('login-description').innerText = `Ingresa tu contraseña para el módulo de ${cursoActivo}:`;
+}
+
+
+btnSubmitPass.addEventListener('click', validarContrasena);
+inputPass.addEventListener('keypress', (e) => { if (e.key === 'Enter') validarContrasena(); });
+
+function validarContrasena() {
+    const passwordIngresada = inputPass.value.trim();
+    let esValida = false;
+
+    if (selectedRole === 'tutor') {
+        esValida = CLAVES_TUTORES_POR_COURSE[cursoActivo].includes(passwordIngresada);
+    } else {
+        esValida = CLAVES_ALUMNOS_POR_COURSE[cursoActivo].includes(passwordIngresada);
+    }
+
+    if (esValida) {
+        errorMsg.style.display = 'none';
+        stepLogin.style.display = 'none';
         
-        btnCopyCode.innerText = "¡Copiado!";
-        setTimeout(() => btnCopyCode.innerText = "Copiar Código", 2000);
-    });
-}
-
-const btnGoToMeet = document.getElementById('btn-go-to-meet');
-if (btnGoToMeet) {
-    btnGoToMeet.addEventListener('click', () => {
-        const alumnoInput = document.getElementById('alumno-received-message');
-        if (!alumnoInput) return;
-        let rawCode = alumnoInput.value.trim();
-        if (rawCode === 'No hay códigos asignados aún por el tutor.' || rawCode === "") return;
-
-        if (!rawCode.startsWith('http://') && !rawCode.startsWith('https://')) {
-            const cleanCode = rawCode.replace(/-/g, "");
-            window.open(`https://meet.google.com/landing?authuser=0&hs=202&pjk=${cleanCode}`, '_blank');
+        if (selectedRole === 'tutor') {
+            mostrarPanelTutor();
         } else {
-            window.open(rawCode, '_blank');
+            mostrarPanelAlumno();
+        }
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
+
+
+
+function mostrarPanelTutor() {
+    stepTutorDashboard.style.display = 'block';
+    
+    const cursoRef = ref(db, 'cursos/' + cursoActivo);
+    onValue(cursoRef, (snapshot) => {
+        const data = snapshot.val();
+        document.getElementById('tutor-message').value = data ? data.codigoMeet : '';
+    }, { onlyOnce: true });
+}
+
+
+document.getElementById('btn-send-announcement').addEventListener('click', () => {
+    const nuevoCodigo = document.getElementById('tutor-message').value.trim();
+    
+    set(ref(db, 'cursos/' + cursoActivo), {
+        codigoMeet: nuevoCodigo
+    }).then(() => {
+        const successMsg = document.getElementById('tutor-success-msg');
+        successMsg.style.display = 'block';
+        setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
+    }).catch((error) => {
+        console.error("Error al guardar en la nube: ", error);
+    });
+});
+
+
+function mostrarPanelAlumno() {
+    stepAlumnoDashboard.style.display = 'block';
+    
+    const cursoRef = ref(db, 'cursos/' + cursoActivo);
+    onValue(cursoRef, (snapshot) => {
+        const data = snapshot.val();
+        const inputAlumno = document.getElementById('alumno-received-message');
+        
+        if (data && data.codigoMeet && data.codigoMeet !== '') {
+            inputAlumno.value = data.codigoMeet;
+        } else {
+            inputAlumno.value = "No hay códigos asignados";
         }
     });
 }
 
-const itemsLaterales = document.querySelectorAll('.item-lateral');
-const seccionesContenido = document.querySelectorAll('.seccion-contenido');
 
-itemsLaterales.forEach(item => {
-    item.addEventListener('click', () => {
-      
-        itemsLaterales.forEach(i => i.classList.remove('active-lateral'));
-        
-      
-        item.classList.add('active-lateral');
-        
-      
-        seccionesContenido.forEach(sec => sec.style.display = 'none');
-        
-        const idSeccionDestino = item.getAttribute('data-seccion');
-        const seccionAMostrar = document.getElementById(idSeccionDestino);
-        if (seccionAMostrar) {
-            seccionAMostrar.style.display = 'block';
-        }
-    });
+document.getElementById('btn-copy-code').addEventListener('click', () => {
+    const inputAlumno = document.getElementById('alumno-received-message');
+    if (inputAlumno.value !== "No hay códigos asignados") {
+        inputAlumno.select();
+        document.execCommand('copy');
+        alert('¡Código copiado al portapapeles!');
+    }
+});
+
+
+document.getElementById('btn-go-to-meet').addEventListener('click', () => {
+    const inputAlumno = document.getElementById('alumno-received-message').value;
+    if (inputAlumno !== "No hay códigos asignados" && inputAlumno !== "") {
+        const urlFinal = inputAlumno.startsWith('http') ? inputAlumno : `https://meet.google.com/${inputAlumno}`;
+        window.open(urlFinal, '_blank');
+    } else {
+        alert('Aún no hay una clase activa asignada por el tutor.');
+    }
 });
