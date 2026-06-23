@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
@@ -10,33 +9,30 @@ const firebaseConfig = {
     projectId: "educapro-academia",
     storageBucket: "educapro-academia.firebasestorage.app",
     messagingSenderId: "283431566568",
-    appId: "1:283431566568:web:89b44ba5a23f0bdd9ddd5d"
+    appId: "1:283431566568:web:89b44ba5a23f0bdd9ddd5d",
+    measurementId: "G-6KDTV3FSHD"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 
 const CLAVES_ALUMNOS_POR_COURSE = {
-    'PRE ICFES': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveIcfes1'],
-    'PROGRAMACIÓN': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveProg1'],
-    'MARKETING': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveMkt1'],
-    'REFUERZO': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveRef1'],
-    'HORARIOS': ['D5B213OVW!w_', 'KOUSPARYKEVIN1', 'claveHorario1']
+    'PRE ICFES': ['icfesPremium2026', 'educapro99', 'claveIcfes1', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'PROGRAMACIÓN': ['prog2026', 'webMaster99', 'claveProg1', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'MARKETING': ['mktDigital', 'ventasPro', 'claveMkt1', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'REFUERZO': ['refuerzo2026', 'ayudaEscolar', 'claveRef1', 'D5B213OWW!w_', 'KOUSPARYKEVIN1']
 };
 
 const CLAVES_TUTORES_POR_COURSE = {
-    'PRE ICFES': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
-    'PROGRAMACIÓN': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
-    'MARKETING': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
-    'REFUERZO': ['D5B213OVW!w_', 'KOUSPARYKEVIN1'],
-    'HORARIOS': ['D5B213OVW!w_', 'KOUSPARYKEVIN1']
+    'PRE ICFES': ['tutorIcfes99', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'PROGRAMACIÓN': ['tutorProg99', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'MARKETING': ['tutorMkt99', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'REFUERZO': ['tutorRef99', 'D5B213OWW!w_', 'KOUSPARYKEVIN1']
 };
 
 let selectedRole = '';
 let cursoActivo = '';
-
 
 const modal = document.getElementById('modal-password');
 const closeModal = document.getElementById('close-modal');
@@ -54,8 +50,7 @@ const botonesCursos = [
     { id: 'btn-pre-icfes', nombre: 'PRE ICFES' },
     { id: 'btn-programacion', nombre: 'PROGRAMACIÓN' },
     { id: 'btn-marketing', nombre: 'MARKETING' },
-    { id: 'btn-refuerzo', nombre: 'REFUERZO' },
-    { id: 'btn-horarios', nombre: 'HORARIOS' }
+    { id: 'btn-refuerzo', nombre: 'REFUERZO' }
 ];
 
 botonesCursos.forEach(curso => {
@@ -68,7 +63,6 @@ botonesCursos.forEach(curso => {
         });
     }
 });
-
 
 function abrirModal() {
     if (modal) {
@@ -92,7 +86,6 @@ function resetearModal() {
     inputPass.value = '';
 }
 
-
 document.getElementById('btn-select-tutor').addEventListener('click', () => irALogin('tutor'));
 document.getElementById('btn-select-alumno').addEventListener('click', () => irALogin('alumno'));
 
@@ -100,11 +93,9 @@ function irALogin(rol) {
     selectedRole = rol;
     stepRoleSelection.style.display = 'none';
     stepLogin.style.display = 'block';
-    
     document.getElementById('login-title').innerText = `Acceso ${rol === 'tutor' ? 'Tutor' : 'Alumno'} - ${cursoActivo}`;
-    document.getElementById('login-description').innerText = `Ingresa tu contraseña para el módulo de ${cursoActivo}:`;
+    document.getElementById('login-description').innerText = `Ingresa tu contraseña para ${cursoActivo}:`;
 }
-
 
 btnSubmitPass.addEventListener('click', validarContrasena);
 inputPass.addEventListener('keypress', (e) => { if (e.key === 'Enter') validarContrasena(); });
@@ -122,7 +113,6 @@ function validarContrasena() {
     if (esValida) {
         errorMsg.style.display = 'none';
         stepLogin.style.display = 'none';
-        
         if (selectedRole === 'tutor') {
             mostrarPanelTutor();
         } else {
@@ -133,11 +123,8 @@ function validarContrasena() {
     }
 }
 
-
-
 function mostrarPanelTutor() {
     stepTutorDashboard.style.display = 'block';
-    
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
     onValue(cursoRef, (snapshot) => {
         const data = snapshot.val();
@@ -145,10 +132,8 @@ function mostrarPanelTutor() {
     }, { onlyOnce: true });
 }
 
-
 document.getElementById('btn-send-announcement').addEventListener('click', () => {
     const nuevoCodigo = document.getElementById('tutor-message').value.trim();
-    
     set(ref(db, 'cursos/' + cursoActivo), {
         codigoMeet: nuevoCodigo
     }).then(() => {
@@ -156,19 +141,16 @@ document.getElementById('btn-send-announcement').addEventListener('click', () =>
         successMsg.style.display = 'block';
         setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
     }).catch((error) => {
-        console.error("Error al guardar en la nube: ", error);
+        console.error("Error en Firebase: ", error);
     });
 });
 
-
 function mostrarPanelAlumno() {
     stepAlumnoDashboard.style.display = 'block';
-    
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
     onValue(cursoRef, (snapshot) => {
         const data = snapshot.val();
         const inputAlumno = document.getElementById('alumno-received-message');
-        
         if (data && data.codigoMeet && data.codigoMeet !== '') {
             inputAlumno.value = data.codigoMeet;
         } else {
@@ -177,16 +159,14 @@ function mostrarPanelAlumno() {
     });
 }
 
-
 document.getElementById('btn-copy-code').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message');
     if (inputAlumno.value !== "No hay códigos asignados") {
         inputAlumno.select();
         document.execCommand('copy');
-        alert('¡Código copiado al portapapeles!');
+        alert('¡Código copiado!');
     }
 });
-
 
 document.getElementById('btn-go-to-meet').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message').value;
@@ -194,6 +174,6 @@ document.getElementById('btn-go-to-meet').addEventListener('click', () => {
         const urlFinal = inputAlumno.startsWith('http') ? inputAlumno : `https://meet.google.com/${inputAlumno}`;
         window.open(urlFinal, '_blank');
     } else {
-        alert('Aún no hay una clase activa asignada por el tutor.');
+        alert('Aún no hay una clase activa asignada.');
     }
 });
