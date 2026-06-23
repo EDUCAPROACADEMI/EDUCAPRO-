@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUCA PRO+ | Inscripciones</title>
+    <link rel="stylesheet" href="STILOS.CSS">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🎓 EDUCA <span>PRO+</span></div>
+        <nav>
+            <ul>
+                <li><a href="menuacademia.html">Inicio</a></li>
+                <li><a href="informacion.html">Información</a></li>
+                <li><a href="inscripciones.html" class="active">Inscripciones</a></li>
+                <li><a href="contactanos.html">Contáctanos</a></li>
+                <li><a href="horarios.html">Horarios</a></li>
+                <li><a href="cursos adicionales.html">Cursos</a></li>
+                <li><a href="metodo.html">Método</a></li>
+                <li><a href="personal.html">Personal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="welcome-text">
+            <h1>Asegura tu <span>Cupo</span></h1> 
+            <p>Completa el siguiente formulario para iniciar tu proceso de inscripción. Nuestro equipo de <strong>EDUCA PRO+</strong> se contactará contigo para acordar los detalles y tarifas.</p>
+        </div>
+
+        <div class="formulario-container">
+            <form action="https://formsubmit.co/kevinvasqezescobar2008@gmail.com" method="POST" class="form-inscripcion">
+                
+                <input type="hidden" name="_captcha" value="false">
+                
+                <input type="hidden" name="_next" value="https://educaproacademi.github.io/EDUCA-PRO-/inscripciones.html">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Número de Celular / WhatsApp</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej. 315 123 4567" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="programa">Programa de Interés</label>
+                    <select id="programa" name="programa" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="Refuerzo Escolar (8° a 11°)">Refuerzo Escolar (8° a 11°)</option>
+                        <option value="Pre-Icfes (Saber 11)">Pre-Icfes (Saber 11)</option>
+                        <option value="Creación de Páginas Web y Maquetación">Creación de Páginas Web y Maquetación</option>
+                        <option value="Automatización y Marketing Digital">Automatización y Marketing Digital</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="plan">Plan de Preferencia</label>
+                    <select id="plan" name="plan" required>
+                        <option value="" disabled selected>Selecciona un plan</option>
+                        <option value="Plan Semanal (Negociable)">Plan Semanal (Negociable)</option>
+                        <option value="Plan Mensual (Negociable)">Plan Mensual (Negociable)</option>
+                        <option value="Plan Trimestral (Negociable)">Plan Trimestral (Negociable)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-enviar">Enviar Pre-Inscripción</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

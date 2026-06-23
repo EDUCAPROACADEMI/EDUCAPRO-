@@ -1,0 +1,393 @@
+:root {
+    --bg-gradient: radial-gradient(circle at 50% 50%, #111827 0%, #070a13 100%);
+    --bg-card: rgba(17, 24, 39, 0.65);         
+    --cyan-neon: #00f2fe;       
+    --orange-neon: #ff6b00;     
+    --purple-neon: #a855f7;     
+    --text-white: #ffffff;
+    --text-gray: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: #070a13;
+    background-image: radial-gradient(circle at 80% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+                      radial-gradient(circle at 10% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 40%);
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+header {
+    background-color: rgba(7, 10, 19, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo span {
+    color: var(--cyan-neon);
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+nav ul {
+    display: flex;
+    gap: 8px; 
+    list-style: none;
+    flex-wrap: wrap; 
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 0.75rem; 
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 14px; 
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    display: inline-block;
+}
+
+nav ul li a:hover, 
+nav ul li a.active {
+    color: var(--text-white);
+    background: rgba(0, 242, 254, 0.08);
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+
+.app-layout {
+    display: flex;
+    flex: 1;
+    padding-top: 73px; 
+}
+
+
+.sidebar-panel {
+    width: 260px;
+    background: rgba(7, 10, 19, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 15px;
+}
+
+.sidebar-panel ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar-panel ul li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    color: var(--text-gray);
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sidebar-panel ul li .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.sidebar-panel ul li:hover {
+    color: var(--text-white);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar-panel ul li.active-lateral {
+    color: var(--text-white);
+    background: rgba(0, 242, 254, 0.06);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.05);
+}
+
+
+main {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.welcome-text {
+    margin-bottom: 30px;
+}
+
+.welcome-text h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--text-white);
+}
+
+.welcome-text h1 span {
+    color: var(--cyan-neon);
+    text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.welcome-text h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text-white);
+}
+
+.welcome-text h2 span {
+    color: var(--purple-neon);
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.welcome-text p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    max-width: 600px;
+}
+
+
+.dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.metric-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.metric-card h4 {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metric-card .value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-white);
+    margin-bottom: 5px;
+}
+
+.metric-card .subtext {
+    font-size: 0.85rem;
+}
+
+
+.metric-card.cyan .material-symbols-outlined { color: var(--cyan-neon); }
+.metric-card.cyan:hover {
+    border-color: var(--cyan-neon);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+    transform: translateY(-4px);
+}
+
+.metric-card.purple .material-symbols-outlined { color: var(--purple-neon); }
+.metric-card.purple:hover {
+    border-color: var(--purple-neon);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+    transform: translateY(-4px);
+}
+
+.metric-card.orange .material-symbols-outlined { color: var(--orange-neon); }
+.metric-card.orange:hover {
+    border-color: var(--orange-neon);
+    box-shadow: 0 0 25px rgba(255, 107, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+
+.tabla-tarifas-container {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    margin-top: 10px;
+}
+
+.tabla-tarifas {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.tabla-tarifas th, 
+.tabla-tarifas td {
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tabla-tarifas th {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-white);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.tabla-tarifas tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-tarifas td {
+    color: var(--text-gray);
+}
+
+.tabla-tarifas td strong {
+    color: var(--text-white);
+}
+
+
+.text-cyan { color: var(--cyan-neon) !important; font-weight: bold; }
+.text-purple { color: var(--purple-neon) !important; font-weight: bold; }
+.text-orange { color: var(--orange-neon) !important; font-weight: bold; }
+
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); 
+    backdrop-filter: blur(5px); 
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #111622; 
+    border: 2px solid #00f0ff; 
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 0px 25px rgba(0, 240, 255, 0.2);
+    color: #ffffff;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #a0aec0;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #ff5555;
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #00f0ff;
+}
+
+.modal-content p {
+    font-size: 0.95rem;
+    color: #a0aec0;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.modal-content input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-content input[type="password"]:focus {
+    border-color: #00f0ff;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00f0ff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.modal-content button:hover {
+    background-color: #00d8e6;
+}
+
+.modal-content button:active {
+    transform: scale(0.98);
+}

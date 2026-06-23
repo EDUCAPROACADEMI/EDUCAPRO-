@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUCA PRO+ | Panel de Control</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="STILOS.CSS">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🎓 EDUCA <span>PRO+</span></div>
+<nav>
+    <ul>
+        <li><a href="menuacademia.html" class="active">Inicio</a></li>
+        <li><a href="#" id="btn-pre-icfes">PRE ICFES</a></li>
+        <li><a href="#" id="btn-programacion">PROGRAMACION</a></li>
+        <li><a href="#" id="btn-marketing">MARKETING</a></li>
+        <li><a href="#" id="btn-refuerzo">REFUERZO</a></li>
+        <li><a href="#" id="btn-horarios">HORARIOS</a></li>
+        <li><a href="preguntas.html">PREGUNTAS</a></li>
+    </ul>
+</nav>
+    </header>
+
+    <div class="app-layout">
+   <aside class="sidebar-panel">
+    <ul>
+        <li class="item-lateral active-lateral" data-seccion="sec-dashboard"><span class="material-symbols-outlined">dashboard</span> Dashboard</li>
+        <li class="item-lateral" data-seccion="sec-estudiantes"><span class="material-symbols-outlined">group</span> Estudiantes</li>
+        <li class="item-lateral" data-seccion="sec-cursos"><span class="material-symbols-outlined">menu_book</span> Cursos</li>
+        <li class="item-lateral" data-seccion="sec-clases"><span class="material-symbols-outlined">school</span> Clases</li>
+        <li class="item-lateral" data-seccion="sec-materiales"><span class="material-symbols-outlined">folder</span> Materiales</li>
+        <li class="item-lateral" data-seccion="sec-evaluaciones"><span class="material-symbols-outlined">quiz</span> Evaluaciones</li>
+        <li class="item-lateral" data-seccion="sec-reportes"><span class="material-symbols-outlined">analytics</span> Reportes</li>
+        <li class="item-lateral" data-seccion="sec-mensajes"><span class="material-symbols-outlined">mail</span> Mensajes</li>
+        <li class="item-lateral" data-seccion="sec-configuracion"><span class="material-symbols-outlined">settings</span> Configuración</li>
+    </ul>
+</aside>
+
+<main>
+    <div id="sec-dashboard" class="seccion-contenido">
+        <div class="welcome-text">
+            <h1>Bienvenido a<span> EDUCA PRO+</span></h1>
+            <p>Aquí tienes el estado actual de la academia para el día de hoy con métricas generales.</p>
+        </div>
+
+        <div class="dashboard-metrics">
+            <div class="metric-card cyan">
+                <div class="metric-header">
+                    <h4>Estudiantes</h4>
+                    <span class="material-symbols-outlined">group</span>
+                </div>
+                <div class="value">0</div>
+                <div class="subtext text-cyan">+0% este mes</div>
+            </div>
+            
+            <div class="metric-card purple">
+                <div class="metric-header">
+                    <h4>Cursos Activos</h4>
+                    <span class="material-symbols-outlined">menu_book</span>
+                </div>
+                <div class="value">4</div>
+                <div class="subtext text-purple">Módulos activos</div>
+            </div>
+
+            <div class="metric-card orange">
+                <div class="metric-header">
+                    <h4>Clases Hoy</h4>
+                    <span class="material-symbols-outlined">school</span>
+                </div>
+                <div class="value">8</div>
+                <div class="subtext text-orange">En vivo hoy</div>
+            </div>
+        </div>
+
+        <div class="welcome-text" style="margin-top: 50px;">
+            <h2>Resumen de <span>Tarifas</span></h2>
+        </div>
+
+        <div class="tabla-tarifas-container">
+            <table class="tabla-tarifas">
+                <thead>
+                    <tr>
+                        <th>Módulo Académico</th>
+                        <th>Modalidad</th>
+                        <th>Precio Mensual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pre ICFES Premium</strong></td>
+                        <td>100% En Vivo</td>
+                        <td class="text-cyan">$50000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Programación Web</strong></td>
+                        <td>100% En Vivo</td>
+                        <td class="text-purple">$50000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketing Digital</strong></td>
+                        <td>100% En Vivo</td>
+                        <td class="text-orange">$50000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Refuerzo</strong></td>
+                        <td>100% En Vivo</td>
+                        <td class="text-purple">$50000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="sec-estudiantes" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Panel de <span>Estudiantes</span></h1>
+            <p>Listado general de alumnos matriculados en los diferentes módulos.</p>
+        </div>
+        <div class="tabla-tarifas-container">
+            <table class="tabla-tarifas">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Curso</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Juan Andrés Pérez</td><td>Pre ICFES</td><td style="color: #55ff55;">Activo</td></tr>
+                    <tr><td>María Camila Díaz</td><td>Programación Web</td><td style="color: #55ff55;">Activo</td></tr>
+                    <tr><td>Santiago Castro</td><td>Marketing Digital</td><td style="color: #ff5555;">Mora</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="sec-cursos" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Gestión de <span>Cursos</span></h1>
+            <p>Configuración y asignación de los programas educativos académicos.</p>
+        </div>
+        <div class="dashboard-metrics">
+            <div class="metric-card purple"><h4>Pre ICFES</h4><p>3 Tutores asignados</p></div>
+            <div class="metric-card cyan"><h4>Programación</h4><p>4 Niveles disponibles</p></div>
+            <div class="metric-card orange"><h4>Marketing</h4><p>Actualizado 2026</p></div>
+        </div>
+    </div>
+
+    <div id="sec-clases" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Monitoreo de <span>Clases</span></h1>
+            <p>Horarios y salas activas para las transmisiones en vivo vía Google Meet.</p>
+        </div>
+        <div class="tabla-tarifas-container">
+            <table class="tabla-tarifas">
+                <thead>
+                    <tr><th>Hora</th><th>Módulo</th><th>Tutor</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>04:00 PM</td><td>Programación Web</td><td>Ing. Carlos Mendoza</td></tr>
+                    <tr><td>06:00 PM</td><td>Pre ICFES</td><td>Prof. Laura Sofía</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="sec-materiales" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Repositorio de <span>Materiales</span></h1>
+            <p>Archivos, guías PDF, diapositivas y carpetas de estudio compartido.</p>
+        </div>
+        <div class="dashboard-metrics">
+            <div class="metric-card c-gris" style="background: #2d3748;"><span class="material-symbols-outlined">description</span><h4>Simulacros_ICFES.pdf</h4></div>
+            <div class="metric-card c-gris" style="background: #2d3748;"><span class="material-symbols-outlined">code</span><h4>Guia_Flexbox_Grid.zip</h4></div>
+        </div>
+    </div>
+
+    <div id="sec-evaluaciones" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Banco de <span>Evaluaciones</span></h1>
+            <p>Formularios, quices y exámenes programados para los estudiantes.</p>
+        </div>
+        <p style="color: #94a3b8;">No hay evaluaciones activas programadas para este momento.</p>
+    </div>
+
+    <div id="sec-reportes" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Análisis y <span>Reportes</span></h1>
+            <p>Estadísticas de asistencia, retención de estudiantes y rendimiento académico.</p>
+        </div>
+        <div class="metric-card cyan" style="max-width: 300px;">
+            <h4>Asistencia Promedio</h4>
+            <div class="value">94.2%</div>
+        </div>
+    </div>
+
+    <div id="sec-mensajes" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Buzón de <span>Mensajes</span></h1>
+            <p>Canal interno para notificaciones colectivas y comunicados directos.</p>
+        </div>
+        <div style="background: #0f172a; padding: 15px; border-radius: 8px; border-left: 4px solid #a855f7;">
+            <strong>📢 Dirección General:</strong> Recuerden actualizar los enlaces de Meet 10 minutos antes de cada clase.
+        </div>
+    </div>
+
+    <div id="sec-configuracion" class="seccion-contenido" style="display: none;">
+        <div class="welcome-text">
+            <h1>Ajustes del <span>Panel</span></h1>
+            <p>Configuración del sistema, límites de la academia e información del administrador.</p>
+        </div>
+        <p style="color: #94a3b8;">Versión del Sistema: <strong>v3.8.2 Pro+ (Año 2026)</strong></p>
+    </div>
+</main>
+    </div>
+
+    <div id="modal-password" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            
+            <div id="step-role-selection">
+                <h3>Control de Acceso</h3>
+                <p>Selecciona tu rol para ingresar a la clase del PRE ICFES:</p>
+                <button id="btn-select-tutor" style="width: 100%; margin-bottom: 10px; background: #a855f7; color: white;">Soy Tutor</button>
+                <button id="btn-select-alumno" style="width: 100%; background: #00f0ff; color: black;">Soy Alumno</button>
+            </div>
+
+            <div id="step-login" style="display: none;">
+                <h3 id="login-title">Control de Acceso</h3>
+                <p id="login-description"></p>
+                <input type="password" id="input-pass" placeholder="Ingresa la contraseña">
+                <button id="btn-submit-pass">Ingresar</button>
+                <p id="error-msg" style="color: #ff5555; display: none; margin-top: 10px;">Contraseña incorrecta. Inténtalo de nuevo.</p>
+            </div>
+
+            <div id="step-tutor-dashboard" style="display: none;">
+                <h3>Panel del Tutor</h3>
+                <p>Escribe el código o enlace de Google Meet para los alumnos:</p>
+                <input type="text" id="tutor-message" placeholder="Ej: abc-defg-hij o enlace completo">
+                <button id="btn-send-announcement" style="background: #a855f7; color: white; width: 100%; margin-top: 10px;">Enviar a Alumnos</button>
+                <p id="tutor-success-msg" style="color: #55ff55; display: none; margin-top: 10px;">¡Enviado exitosamente!</p>
+            </div>
+
+            <div id="step-alumno-dashboard" style="display: none;">
+                <h3>Anuncio de la Clase</h3>
+                <p>Copia el código asignado por tu tutor:</p>
+                <input type="text" id="alumno-received-message" readonly style="text-align: center; font-weight: bold; background: #2d3748; color: white;">
+                <button id="btn-copy-code" style="width: 100%; margin-top: 10px; background: #4a5568; color: white;">Copiar Código</button>
+                <button id="btn-go-to-meet" style="width: 100%; margin-top: 10px; background: #00f0ff; color: black; font-weight: bold;">OK (Ir a Google Meet)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="JavaScript.js"></script>
+</body>
+</html>
