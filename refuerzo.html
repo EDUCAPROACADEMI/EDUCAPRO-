@@ -3,60 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDUCA PRO+ | Nuestro Método</title>
+    <title>EDUCA PRO+ | Refuerzo Escolar</title>
     <link rel="stylesheet" href="STILOS.CSS">
 </head>
 <body>
 
     <header>
         <div class="logo">🎓 EDUCA <span>PRO+</span></div>
-        <nav>
+          <nav>
             <ul>
                 <li><a href="menuacademia.html">Inicio</a></li>
-                <li><a href="informacion.html">Información</a></li>
-                <li><a href="inscripciones.html">Inscripciones</a></li>
-                <li><a href="contactanos.html">Contáctanos</a></li>
-                <li><a href="horarios.html">Horarios</a></li>
-                <li><a href="cursos adicionales.html">Cursos</a></li>
-                <li><a href="metodo.html" class="active">Método</a></li>
-                <li><a href="personal.html">Personal</a></li>
+                <li><a href="#" id="btn-pre-icfes" class="active">PRE ICFES</a></li>
+                <li><a href="programacion.html">PROGRAMACION</a></li>
+                <li><a href="marquetin.html">MARKETING</a></li>
+                <li><a href="refuerzo.html">REFUERZO</a></li>
+                
+                <li><a href="AYUDA.html">PREGUNTAS</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <div class="welcome-text">
-            <h1>Metodología <span>De Aprendizaje</span></h1> 
-            <p>En <strong>EDUCA PRO+</strong> no creemos en las clases aburridas de memorizar textos. Nuestro ecosistema virtual está diseñado para aprender haciendo.</p>
-        </div>
-
-        <div class="menu-grid">
-            
-            <div class="card-module cyan">
-                <div class="icon-container">⚡</div>
-                <h3>Clases 100% En Vivo</h3>
-                <p>Sesiones dinámicas por videoconferencia donde puedes interactuar directamente con tu tutor en tiempo real, resolver dudas al instante y compartir pantalla.</p>
-            </div>
-
-            <div class="card-module purple">
-                <div class="icon-container">🛠️</div>
-                <h3>Aprender Haciendo</h3>
-                <p>Tanto en programación y marketing como en refuerzo escolar, aplicamos los conceptos directamente en proyectos reales, laboratorios digitales y simulacros de examen.</p>
-            </div>
-
-            <div class="card-module orange">
-                <div class="icon-container">👥</div>
-                <h3>Atención Personalizada</h3>
-                <p>Mantenemos grupos con cupos limitados para asegurar que cada tutor pueda hacer un seguimiento real al progreso, ritmo y dificultades de cada estudiante.</p>
-            </div>
-
-        </div>
-
-        <div class="welcome-text" style="margin-top: 60px; text-align: center;">
-            <h2>Educación de <span>Acompañamiento</span></h2>
-            <p style="margin: 0 auto;">No estás solo en tu proceso. Además de los horarios fijos de clase, contamos con canales de comunicación abiertos para la revisión y retroalimentación de tus entregas y talleres.</p>
+            <h1>Módulo de <span>Refuerzo Escolar</span></h1>
+            <p>Acompañamiento especializado para estudiantes de 8° a 11°. Asegura tus notas, resuelve tus dudas académicas y domina las materias más complejas.</p>
         </div>
     </main>
 
+    <div id="modal-password" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            
+            <div id="step-role-selection">
+                <h3>Control de Acceso</h3>
+                <p>Selecciona tu rol para ingresar a la clase de REFUERZO:</p>
+                <button id="btn-select-tutor" style="width: 100%; margin-bottom: 10px; background: #a855f7; color: white;">Soy Tutor</button>
+                <button id="btn-select-alumno" style="width: 100%; background: #00f0ff; color: black;">Soy Alumno</button>
+            </div>
+
+            <div id="step-login" style="display: none;">
+                <h3 id="login-title">Control de Acceso</h3>
+                <p id="login-description"></p>
+                <input type="password" id="input-pass" placeholder="Ingresa la contraseña">
+                <button id="btn-submit-pass">Ingresar</button>
+                <p id="error-msg" style="color: #ff5555; display: none; margin-top: 10px;">Contraseña incorrecta. Inténtalo de nuevo.</p>
+            </div>
+
+            <div id="step-tutor-dashboard" style="display: none;">
+                <h3>Panel del Tutor</h3>
+                <p>Escribe el código o enlace de Google Meet para los alumnos:</p>
+                <input type="text" id="tutor-message" placeholder="Ej: abc-defg-hij o enlace completo">
+                <button id="btn-send-announcement" style="background: #a855f7; color: white; width: 100%; margin-top: 10px;">Enviar a Alumnos</button>
+                <p id="tutor-success-msg" style="color: #55ff55; display: none; margin-top: 10px;">¡Enviado exitosamente!</p>
+            </div>
+
+            <div id="step-alumno-dashboard" style="display: none;">
+                <h3>Anuncio de la Clase</h3>
+                <p>Copia el código asignado por tu tutor:</p>
+                <input type="text" id="alumno-received-message" readonly style="text-align: center; font-weight: bold; background: #2d3748; color: white;">
+                <button id="btn-copy-code" style="width: 100%; margin-top: 10px; background: #4a5568; color: white;">Copiar Código</button>
+                <button id="btn-go-to-meet" style="width: 100%; margin-top: 10px; background: #00f0ff; color: black; font-weight: bold;">OK (Ir a Google Meet)</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="JavaScript.js"></script>
 </body>
 </html>
