@@ -33,6 +33,8 @@ const CLAVES_TUTORES_POR_COURSE = {
 
 let selectedRole = '';
 let cursoActivo = '';
+let FirebaseListener = null; 
+
 
 const modal = document.getElementById('modal-password');
 const closeModal = document.getElementById('close-modal');
@@ -74,6 +76,11 @@ function abrirModal() {
 if (closeModal) {
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
+        // Desconectar listener de Firebase al cerrar para liberar memoria
+        if (FirebaseListener) {
+            FirebaseListener();
+            FirebaseListener = null;
+        }
     });
 }
 
@@ -84,6 +91,11 @@ function resetearModal() {
     stepAlumnoDashboard.style.display = 'none';
     errorMsg.style.display = 'none';
     inputPass.value = '';
+    
+    if (FirebaseListener) {
+        FirebaseListener();
+        FirebaseListener = null;
+    }
 }
 
 document.getElementById('btn-select-tutor').addEventListener('click', () => irALogin('tutor'));
@@ -95,6 +107,7 @@ function irALogin(rol) {
     stepLogin.style.display = 'block';
     document.getElementById('login-title').innerText = `Acceso ${rol === 'tutor' ? 'Tutor' : 'Alumno'} - ${cursoActivo}`;
     document.getElementById('login-description').innerText = `Ingresa tu contraseña para ${cursoActivo}:`;
+    inputPass.focus();
 }
 
 btnSubmitPass.addEventListener('click', validarContrasena);
@@ -105,9 +118,9 @@ function validarContrasena() {
     let esValida = false;
 
     if (selectedRole === 'tutor') {
-        esValida = CLAVES_TUTORES_POR_COURSE[cursoActivo].includes(passwordIngresada);
+        esValida = CLAVES_TUTORES_POR_COURSE[cursoActivo]?.includes(passwordIngresada) || false;
     } else {
-        esValida = CLAVES_ALUMNOS_POR_COURSE[cursoActivo].includes(passwordIngresada);
+        esValida = CLAVES_ALUMNOS_POR_COURSE[cursoActivo]?.includes(passwordIngresada) || false;
     }
 
     if (esValida) {
@@ -123,12 +136,17 @@ function validarContrasena() {
     }
 }
 
+// Panel del Tutor
 function mostrarPanelTutor() {
     stepTutorDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
+    
     onValue(cursoRef, (snapshot) => {
         const data = snapshot.val();
-        document.getElementById('tutor-message').value = data ? data.codigoMeet : '';
+        const inputTutor = document.getElementById('tutor-message');
+        if (inputTutor) {
+            inputTutor.value = data ? data.codigoMeet : '';
+        }
     }, { onlyOnce: true });
 }
 
@@ -141,39 +159,102 @@ document.getElementById('btn-send-announcement').addEventListener('click', () =>
         successMsg.style.display = 'block';
         setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
     }).catch((error) => {
-        console.error("Error en Firebase: ", error);
+        console.error("Error al guardar en Realtime Database: ", error);
     });
 });
+
 
 function mostrarPanelAlumno() {
     stepAlumnoDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
-    onValue(cursoRef, (snapshot) => {
+    
+    
+    FirebaseListener = onValue(cursoRef, (snapshot) => {
         const data = snapshot.val();
         const inputAlumno = document.getElementById('alumno-received-message');
-        if (data && data.codigoMeet && data.codigoMeet !== '') {
-            inputAlumno.value = data.codigoMeet;
-        } else {
-            inputAlumno.value = "No hay códigos asignados";
+        if (inputAlumno) {
+            if (data && data.codigoMeet && data.codigoMeet.trim() !== '') {
+                inputAlumno.value = data.codigoMeet;
+            } else {
+                inputAlumno.value = "No hay códigos asignados";
+            }
         }
     });
 }
 
+
 document.getElementById('btn-copy-code').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message');
-    if (inputAlumno.value !== "No hay códigos asignados") {
-        inputAlumno.select();
-        document.execCommand('copy');
-        alert('¡Código copiado!');
+    if (inputAlumno && inputAlumno.value !== "No hay códigos asignados" && inputAlumno.value !== "") {
+        navigator.clipboard.writeText(inputAlumno.value)
+            .then(() => {
+                alert('¡Código copiado al portapapeles!');
+            })
+            .catch(err => {
+                console.error('Error al copiar: ', err);
+            });
     }
 });
 
+// Redirección segura a Google Meet
 document.getElementById('btn-go-to-meet').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message').value;
-    if (inputAlumno !== "No hay códigos asignados" && inputAlumno !== "") {
+    if (inputAlumno !== "No hay códigos asignados" && inputAlumno.trim() !== "") {
         const urlFinal = inputAlumno.startsWith('http') ? inputAlumno : `https://meet.google.com/${inputAlumno}`;
         window.open(urlFinal, '_blank');
     } else {
-        alert('Aún no hay una clase activa asignada.');
+        alert('Aún no hay una clase activa asignada por tu tutor.');
+    }
+});
+// --- FUNCIONALIDAD DEL MENÚ LATERAL (SIDEBAR) ---
+
+// 1. Mapeamos cada botón del menú con el ID de su respectiva sección de contenido
+// --- FUNCIONALIDAD DEL MENÚ LATERAL (SIDEBAR) ---
+
+// 1. Mapeamos cada botón del menú con el ID real de tu HTML (cambiado a 'sec-')
+const seccionesMenu = [
+    { btnId: 'menu-dashboard', sectionId: 'sec-dashboard' },
+    { btnId: 'menu-estudiantes', sectionId: 'sec-estudiantes' },
+    { btnId: 'menu-cursos', sectionId: 'sec-cursos' },
+    { btnId: 'menu-clases', sectionId: 'sec-clases' },
+    { btnId: 'menu-materiales', sectionId: 'sec-materiales' },
+    { btnId: 'menu-evaluaciones', sectionId: 'sec-evaluaciones' },
+    { btnId: 'menu-reportes', sectionId: 'sec-reportes' },
+    { btnId: 'menu-mensajes', sectionId: 'sec-mensajes' },
+    { btnId: 'menu-configuracion', sectionId: 'sec-configuracion' }
+];
+
+// 2. Recorremos el arreglo para asignar los eventos de clic
+seccionesMenu.forEach(item => {
+    const boton = document.getElementById(item.btnId);
+    if (boton) {
+        boton.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que la página se recargue
+
+            // Quitar la clase 'active' de todos los botones y ponérsela al seleccionado
+            seccionesMenu.forEach(i => {
+                const b = document.getElementById(i.btnId);
+                if (b) b.classList.remove('active');
+            });
+            boton.classList.add('active');
+
+            // Ocultar todas las secciones y mostrar solo la que corresponde
+            seccionesMenu.forEach(i => {
+                const seccion = document.getElementById(i.sectionId);
+                if (seccion) {
+                    seccion.style.display = 'none';
+                    seccion.classList.remove('fade-in'); // Quitamos la animación para reiniciarla
+                }
+            });
+
+            const seccionActiva = document.getElementById(item.sectionId);
+            if (seccionActiva) {
+                seccionActiva.style.display = 'block';
+                // Añadimos un pequeño efecto de animación al aparecer
+                setTimeout(() => {
+                    seccionActiva.classList.add('fade-in');
+                }, 10);
+            }
+        });
     }
 });
