@@ -3,90 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDUCA PRO+ | Información</title>
+    <title>EDUCA PRO+ | Marketing</title>
     <link rel="stylesheet" href="STILOS.CSS">
 </head>
 <body>
 
     <header>
         <div class="logo">🎓 EDUCA <span>PRO+</span></div>
-        <nav>
+       <nav>
             <ul>
                 <li><a href="menuacademia.html">Inicio</a></li>
-                <li><a href="informacion.html" class="active">Información</a></li>
-                <li><a href="inscripciones.html">Inscripciones</a></li>
-                <li><a href="contactanos.html">Contáctanos</a></li>
-                <li><a href="horarios.html">Horarios</a></li>
-                <li><a href="cursos adicionales.html">Cursos</a></li>
-                <li><a href="metodo.html">Método</a></li>
-                <li><a href="personal.html">Personal</a></li>
+                <li><a href="#" id="btn-pre-icfes" class="active">PRE ICFES</a></li>
+                <li><a href="programacion.html">PROGRAMACION</a></li>
+                <li><a href="marquetin.html">MARKETING</a></li>
+                <li><a href="refuerzo.html">REFUERZO</a></li>
+                
+                <li><a href="AYUDA.html">PREGUNTAS</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <div class="welcome-text">
-            <h1>Sobre <span>EDUCA PRO+</span></h1> 
-            <p>Somos una academia de aprendizaje virtual nacida en <strong>Ibagué</strong>. Rompemos el molde de la educación tradicional con metodologías innovadoras y tecnológicas.</p>
+            <h1>Módulo de <span>Marketing Digital</span></h1>
+            <p>Aprende las estrategias de venta, anuncios digitales, posicionamiento de marca y monetización que mueven al mundo actual.</p>
         </div>
-
-        <div class="menu-grid">
-            
-            <div class="card-module cyan">
-                <div class="icon-container">📚</div>
-                <h3>Refuerzo Escolar</h3>
-                <p>Acompañamiento especializado para estudiantes de 8° a 11°. Asegura tus notas y domina las materias más complejas.</p>
-            </div>
-
-            <div class="card-module purple">
-                <div class="icon-container">🎯</div>
-                <h3>Pre-Icfes</h3>
-                <p>Entrenamiento estratégico e intensivo para lograr un puntaje de excelencia en la prueba Saber 11.</p>
-            </div>
-
-            <div class="card-module orange">
-                <div class="icon-container">💻</div>
-                <h3>Mundo Digital</h3>
-                <p>Aprende desde cero Creación de Páginas Web, Maquetación, Automatización y Marketing Digital.</p>
-            </div>
-
-        </div>
-
-        <div class="welcome-text" style="margin-top: 60px; margin-bottom: 30px;">
-            <h2>Planes y <span>Tarifas Flexibles</span></h2>
-            <p>Creemos en la educación accesible. Elige la modalidad que mejor se adapte a tu ritmo y presupuesto (Planes totalmente negociables).</p>
-        </div>
-
-        <div class="tabla-tarifas-container">
-            <table class="tabla-tarifas">
-                <thead>
-                    <tr>
-                        <th>Plan</th>
-                        <th>Beneficio</th>
-                        <th>Flexibilidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Semanal</strong></td>
-                        <td>Ideal para refuerzos urgentes, tareas específicas o evaluaciones clave.</td>
-                        <td class="text-cyan">Negociable</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mensual</strong></td>
-                        <td>Seguimiento constante, acceso regular a tutorías y proyectos estables.</td>
-                        <td class="text-purple">Negociable</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Trimestral</strong></td>
-                        <td>Máximo ahorro y la mejor opción para asegurar un aprendizaje a mediano plazo.</td>
-                        <td class="text-orange">Negociable</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
     </main>
 
+    <div id="modal-password" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            
+            <div id="step-role-selection">
+                <h3>Control de Acceso</h3>
+                <p>Selecciona tu rol para ingresar al módulo de MARKETING:</p>
+                <button id="btn-select-tutor" style="width: 100%; margin-bottom: 10px; background: #a855f7; color: white;">Soy Tutor</button>
+                <button id="btn-select-alumno" style="width: 100%; background: #00f0ff; color: black;">Soy Alumno</button>
+            </div>
+
+            <div id="step-login" style="display: none;">
+                <h3 id="login-title">Control de Acceso</h3>
+                <p id="login-description"></p>
+                <input type="password" id="input-pass" placeholder="Ingresa la contraseña">
+                <button id="btn-submit-pass">Ingresar</button>
+                <p id="error-msg" style="color: #ff5555; display: none; margin-top: 10px;">Contraseña incorrecta. Inténtalo de nuevo.</p>
+            </div>
+
+            <div id="step-tutor-dashboard" style="display: none;">
+                <h3>Panel del Tutor</h3>
+                <p>Escribe el código o enlace de Google Meet para los alumnos:</p>
+                <input type="text" id="tutor-message" placeholder="Ej: abc-defg-hij o enlace completo">
+                <button id="btn-send-announcement" style="background: #a855f7; color: white; width: 100%; margin-top: 10px;">Enviar a Alumnos</button>
+                <p id="tutor-success-msg" style="color: #55ff55; display: none; margin-top: 10px;">¡Enviado exitosamente!</p>
+            </div>
+
+            <div id="step-alumno-dashboard" style="display: none;">
+                <h3>Anuncio de la Clase</h3>
+                <p>Copia el código asignado por tu tutor:</p>
+                <input type="text" id="alumno-received-message" readonly style="text-align: center; font-weight: bold; background: #2d3748; color: white;">
+                <button id="btn-copy-code" style="width: 100%; margin-top: 10px; background: #4a5568; color: white;">Copiar Código</button>
+                <button id="btn-go-to-meet" style="width: 100%; margin-top: 10px; background: #00f0ff; color: black; font-weight: bold;">OK (Ir a Google Meet)</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="JavaScript.js"></script>
 </body>
 </html>
