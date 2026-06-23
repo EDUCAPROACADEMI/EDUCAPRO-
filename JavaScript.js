@@ -1,19 +1,19 @@
 
 const CLAVES_ALUMNOS_POR_CURSO = {
-    'PRE ICFES': ['icfesPremium2026', 'educapro99', 'claveIcfes1'],
-    'PROGRAMACIÓN': ['prog2026', 'webMaster99', 'claveProg1'],
-    'MARKETING': ['mktDigital', 'ventasPro', 'claveMkt1'],
-    'REFUERZO': ['refuerzo2026', 'ayudaEscolar', 'claveRef1'],
-    'HORARIOS': ['verHorarios2026', 'horarioPro', 'claveHorario1']
+    'PRE ICFES': ['KOUSPARYKEVIN', 'educapro99', 'claveIcfes1'],
+    'PROGRAMACIÓN': ['KOUSPARYKEVIN', 'webMaster99', 'claveProg1'],
+    'MARKETING': ['KOUSPARYKEVIN', 'ventasPro', 'claveMkt1'],
+    'REFUERZO': ['KOUSPARYKEVIN', 'ayudaEscolar', 'claveRef1'],
+    'HORARIOS': ['KOUSPARYKEVIN', 'horarioPro', 'claveHorario1']
 };
 
 
 const CLAVES_TUTORES_POR_CURSO = {
-    'PRE ICFES': ['tutorIcfes99'],
-    'PROGRAMACIÓN': ['tutorProg99'],
-    'MARKETING': ['tutorMkt99'],
-    'REFUERZO': ['tutorRef99'],
-    'HORARIOS': ['adminHorarios99']
+    'PRE ICFES': ['KOUSPARYKEVIN'],
+    'PROGRAMACIÓN': ['KOUSPARYKEVIN'],
+    'MARKETING': ['KOUSPARYKEVIN'],
+    'REFUERZO': ['KOUSPARYKEVIN'],
+    'HORARIOS': ['KOUSPARYKEVIN']
 };
 
 let selectedRole = ''; 
