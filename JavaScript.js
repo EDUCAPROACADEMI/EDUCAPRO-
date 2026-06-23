@@ -194,24 +194,21 @@ if (btnGoToMeet) {
         }
     });
 }
-// ==========================================
-// 7. INTERCAMBIO DINÁMICO DE PESTAÑAS (SIDEBAR)
-// ==========================================
+
 const itemsLaterales = document.querySelectorAll('.item-lateral');
 const seccionesContenido = document.querySelectorAll('.seccion-contenido');
 
 itemsLaterales.forEach(item => {
     item.addEventListener('click', () => {
-        // 1. Quitar el estado activo de todos los botones laterales
+      
         itemsLaterales.forEach(i => i.classList.remove('active-lateral'));
         
-        // 2. Añadir el estado activo al botón que presionamos
+      
         item.classList.add('active-lateral');
         
-        // 3. Ocultar todas las secciones de contenido de la pantalla principal
+      
         seccionesContenido.forEach(sec => sec.style.display = 'none');
         
-        // 4. Mostrar la sección que corresponde al botón clicado usando su "data-seccion"
         const idSeccionDestino = item.getAttribute('data-seccion');
         const seccionAMostrar = document.getElementById(idSeccionDestino);
         if (seccionAMostrar) {
