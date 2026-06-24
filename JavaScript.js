@@ -18,17 +18,17 @@ const db = getDatabase(app);
 
 
 const CLAVES_ALUMNOS_POR_COURSE = {
-    'PRE ICFES': ['icfesPremium2026', 'educapro99', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
-    'PROGRAMACIÓN': ['prog2026', 'webMaster99', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
-    'MARKETING': ['mktDigital', 'ventasPro', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
-    'REFUERZO': ['refuerzo2026', 'popo', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1']
+    'PRE ICFES': ['icfesPremium2026', 'danielatlas', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'PROGRAMACIÓN': ['prog2026', 'danielatlas', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'MARKETING': ['mktDigital', 'danielatlas', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
+    'REFUERZO': ['refuerzo2026', 'danielatlas', '200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1']
 };
 
 const CLAVES_TUTORES_POR_COURSE = {
-    'PRE ICFES': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1', 'popa'],
-    'PROGRAMACIÓN': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
-    'MARKETING': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1'],
-    'REFUERZO': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1']
+    'PRE ICFES': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1', 'danielatlas'],
+    'PROGRAMACIÓN': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1', 'danielatlas'],
+    'MARKETING': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1', 'danielatlas'],
+    'REFUERZO': ['200902Juan', 'D5B213OWW!w_', 'KOUSPARYKEVIN1', 'danielatlas']
 };
 
 let selectedRole = '';
