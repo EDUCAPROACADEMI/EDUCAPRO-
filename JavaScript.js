@@ -76,7 +76,7 @@ function abrirModal() {
 if (closeModal) {
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
-    
+        
         if (FirebaseListener) {
             FirebaseListener();
             FirebaseListener = null;
@@ -136,7 +136,7 @@ function validarContrasena() {
     }
 }
 
-// Panel del Tutor
+
 function mostrarPanelTutor() {
     stepTutorDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
@@ -252,3 +252,22 @@ seccionesMenu.forEach(item => {
         });
     }
 });
+
+
+window.botpressWebChat = {
+    init: function(config) {
+        config.stylesheet = "data:text/css;charset=utf-8," + encodeURIComponent(`
+            iframe[src*="botpress"]::-webkit-scrollbar,
+            .bp-widget-web-container .bp-widget-web-footer,
+            [class*="footer"],
+            [class*="powered"] {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                padding: 0 !important;
+            }
+        `);
+        return window.botpress.init(config);
+    }
+};
