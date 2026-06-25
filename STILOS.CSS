@@ -414,24 +414,19 @@ main {
     }
 }
 
-/* --- SOLUCIÓN DE RECORTE SEGURO PARA EL IFRAME DE BOTPRESS --- */
+/* --- TRUCO CORRECCIÓN DE LOGO BOTPRESS --- */
 div[style*="position: fixed"] {
-    /* Nos aseguramos de que el contenedor padre que inyecta Botpress oculte lo excedente */
     overflow: hidden !important; 
 }
 
 iframe[src*="botpress"] {
-    /* Forzamos al contenedor web general a no estirarse al límite */
     max-height: calc(100vh - 40px) !important;
-    /* REDUCCIÓN ESTRUCTURAL: Hacemos que el iframe mida 45px MENOS de alto de su contenedor original 
-       para dejar el footer con el logo "by Botpress" fuera del área de renderizado */
-    height: calc(100% - 45px) !important; 
-    margin-bottom: -45px !important;
-    border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
+    clip-path: inset(0px 0px 35px 0px) !important;
+    margin-bottom: -35px !important;
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* --- RESPONSIVE DESIGN --- */
 @media screen and (max-width: 768px) {
     header {
         padding: 15px;
