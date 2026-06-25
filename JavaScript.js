@@ -232,3 +232,35 @@ seccionesMenu.forEach(item => {
         });
     }
 });
+
+
+const clickTrigger = document.getElementById('botpress-click-trigger');
+const logoPatch = document.getElementById('botpress-logo-patch');
+let chatAbierto = false;
+
+if (clickTrigger && logoPatch) {
+    clickTrigger.addEventListener('click', () => {
+        if (!chatAbierto) {
+           
+            logoPatch.style.display = 'block';
+            
+          
+            clickTrigger.style.bottom = '555px'; 
+            clickTrigger.style.right = '10px';
+            clickTrigger.style.width = '45px';
+            clickTrigger.style.height = '45px';
+            
+            chatAbierto = true;
+        } else {
+         
+            logoPatch.style.display = 'none';
+            
+            clickTrigger.style.bottom = '0';
+            clickTrigger.style.right = '0';
+            clickTrigger.style.width = '60px';
+            clickTrigger.style.height = '60px';
+            
+            chatAbierto = false;
+        }
+    });
+}
