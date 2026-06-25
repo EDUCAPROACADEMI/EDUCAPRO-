@@ -155,7 +155,6 @@ main {
     overflow-y: auto;
 }
 
-
 .welcome-text {
     margin-bottom: 30px;
 }
@@ -415,23 +414,24 @@ main {
     }
 }
 
+/* --- SOLUCIÓN DE RECORTE SEGURO PARA EL IFRAME DE BOTPRESS --- */
+div[style*="position: fixed"] {
+    /* Nos aseguramos de que el contenedor padre que inyecta Botpress oculte lo excedente */
+    overflow: hidden !important; 
+}
 
-div[style*="position: fixed"] iframe[src*="botpress"] {
+iframe[src*="botpress"] {
+    /* Forzamos al contenedor web general a no estirarse al límite */
     max-height: calc(100vh - 40px) !important;
+    /* REDUCCIÓN ESTRUCTURAL: Hacemos que el iframe mida 45px MENOS de alto de su contenedor original 
+       para dejar el footer con el logo "by Botpress" fuera del área de renderizado */
+    height: calc(100% - 45px) !important; 
+    margin-bottom: -45px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
 }
 
-iframe[src*="botpress"]::-webkit-scrollbar,
-iframe[src*="botpress"] .bp-widget-web-container .bp-widget-web-footer,
-iframe[src*="botpress"] [class*="footer"],
-iframe[src*="botpress"] [class*="powered"] {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    padding: 0 !important;
-}
-
-
+/* --- RESPONSIVE MEDIA QUERIES --- */
 @media screen and (max-width: 768px) {
     header {
         padding: 15px;
