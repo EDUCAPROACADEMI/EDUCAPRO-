@@ -579,3 +579,39 @@ main {
         font-size: 13px; 
     }
 }
+
+/* --- SISTEMA DE MÁSCARA FLOTANTE (CALIBRADO) --- */
+#botpress-shield-container {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    z-index: 2147483647; /* Asegura que esté por encima de todo */
+    pointer-events: none; 
+}
+
+#botpress-click-trigger {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 52px;  /* Ajustado al tamaño del botón de inicio de Botpress v3 */
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto; 
+    background: transparent;
+}
+
+#botpress-logo-patch {
+    display: none; /* Cambiar a 'block' si necesitas ver dónde se posiciona temporalmente */
+    position: absolute;
+    bottom: 0px;  
+    right: 0px;
+    width: 100%; 
+    max-width: 360px; 
+    height: 38px; 
+    background-color: #ffffff; /* Ajusta este color al fondo de tu ventana de chat */
+    border-bottom-left-radius: 16px;  
+    border-bottom-right-radius: 16px; 
+    pointer-events: none;
+    box-shadow: 0px -2px 10px rgba(0,0,0,0.03); 
+}
