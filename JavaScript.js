@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyDzYJPI9mU7RlewCmeoCKVSQR4DJscnCE8",
     authDomain: "educapro-academia.firebaseapp.com",
@@ -15,7 +14,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
 
 const CLAVES_ALUMNOS_POR_COURSE = {
     'PRE ICFES': ['Lau010', 'danielatlas', '200902Juan', 'D5B213OWWW', 'KOUSPARYKEVIN1'],
@@ -35,7 +33,6 @@ let selectedRole = '';
 let cursoActivo = '';
 let FirebaseListener = null; 
 
-
 const modal = document.getElementById('modal-password');
 const closeModal = document.getElementById('close-modal');
 const stepRoleSelection = document.getElementById('step-role-selection');
@@ -46,7 +43,6 @@ const stepAlumnoDashboard = document.getElementById('step-alumno-dashboard');
 const inputPass = document.getElementById('input-pass');
 const btnSubmitPass = document.getElementById('btn-submit-pass');
 const errorMsg = document.getElementById('error-msg');
-
 
 const botonesCursos = [
     { id: 'btn-pre-icfes', nombre: 'PRE ICFES' },
@@ -76,7 +72,6 @@ function abrirModal() {
 if (closeModal) {
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
-        
         if (FirebaseListener) {
             FirebaseListener();
             FirebaseListener = null;
@@ -91,7 +86,6 @@ function resetearModal() {
     stepAlumnoDashboard.style.display = 'none';
     errorMsg.style.display = 'none';
     inputPass.value = '';
-    
     if (FirebaseListener) {
         FirebaseListener();
         FirebaseListener = null;
@@ -140,7 +134,6 @@ function validarContrasena() {
 function mostrarPanelTutor() {
     stepTutorDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
-    
     onValue(cursoRef, (snapshot) => {
         const data = snapshot.val();
         const inputTutor = document.getElementById('tutor-message');
@@ -163,12 +156,10 @@ document.getElementById('btn-send-announcement').addEventListener('click', () =>
     });
 });
 
-
+// Panel del Alumno
 function mostrarPanelAlumno() {
     stepAlumnoDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
-    
-    
     FirebaseListener = onValue(cursoRef, (snapshot) => {
         const data = snapshot.val();
         const inputAlumno = document.getElementById('alumno-received-message');
@@ -182,20 +173,14 @@ function mostrarPanelAlumno() {
     });
 }
 
-
 document.getElementById('btn-copy-code').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message');
     if (inputAlumno && inputAlumno.value !== "No hay códigos asignados" && inputAlumno.value !== "") {
         navigator.clipboard.writeText(inputAlumno.value)
-            .then(() => {
-                alert('¡Código copiado al portapapeles!');
-            })
-            .catch(err => {
-                console.error('Error al copiar: ', err);
-            });
+            .then(() => { alert('¡Código copiado al portapapeles!'); })
+            .catch(err => { console.error('Error al copiar: ', err); });
     }
 });
-
 
 document.getElementById('btn-go-to-meet').addEventListener('click', () => {
     const inputAlumno = document.getElementById('alumno-received-message').value;
@@ -207,6 +192,7 @@ document.getElementById('btn-go-to-meet').addEventListener('click', () => {
     }
 });
 
+// Menú de Navegación Lateral
 const seccionesMenu = [
     { btnId: 'menu-dashboard', sectionId: 'sec-dashboard' },
     { btnId: 'menu-estudiantes', sectionId: 'sec-estudiantes' },
@@ -219,14 +205,11 @@ const seccionesMenu = [
     { btnId: 'menu-configuracion', sectionId: 'sec-configuracion' }
 ];
 
-
 seccionesMenu.forEach(item => {
     const boton = document.getElementById(item.btnId);
     if (boton) {
         boton.addEventListener('click', (e) => {
             e.preventDefault();
-
-         
             seccionesMenu.forEach(i => {
                 const b = document.getElementById(i.btnId);
                 if (b) b.classList.remove('active');
@@ -244,42 +227,8 @@ seccionesMenu.forEach(item => {
             const seccionActiva = document.getElementById(item.sectionId);
             if (seccionActiva) {
                 seccionActiva.style.display = 'block';
-           
-                setTimeout(() => {
-                    seccionActiva.classList.add('fade-in');
-                }, 10);
+                setTimeout(() => { seccionActiva.classList.add('fade-in'); }, 10);
             }
         });
     }
 });
-
-
-// --- INTEGRACIÓN AVANZADA: REMOVER BRANDING MEDIANTE OBSERVADOR DE DOM ---
-const observer = new MutationObserver(() => {
-    // Busca las clases y componentes típicos que usa el contenedor v2 de Botpress
-    const elementosBranding = document.querySelectorAll('[class*="powered"], [class*="footer"], .bp-widget-web-footer');
-    elementosBranding.forEach(el => {
-        el.style.setProperty('display', 'none', 'important');
-        el.style.setProperty('opacity', '0', 'important');
-        el.style.setProperty('visibility', 'hidden', 'important');
-        el.style.setProperty('height', '0', 'important');
-    });
-
-
-    if (!document.getElementById('hide-botpress-style')) {
-        const estilo = document.createElement('style');
-        estilo.id = 'hide-botpress-style';
-        estilo.innerHTML = `
-            [class*="powered"], [class*="footer"], .bp-widget-web-footer {
-                display: none !important;
-                opacity: 0 !important;
-                visibility: hidden !important;
-                height: 0 !important;
-                padding: 0 !important;
-            }
-        `;
-        document.head.appendChild(estilo);
-    }
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
