@@ -136,7 +136,7 @@ function validarContrasena() {
     }
 }
 
-
+// Panel del Tutor
 function mostrarPanelTutor() {
     stepTutorDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
@@ -254,20 +254,32 @@ seccionesMenu.forEach(item => {
 });
 
 
-window.botpressWebChat = {
-    init: function(config) {
-        config.stylesheet = "data:text/css;charset=utf-8," + encodeURIComponent(`
-            iframe[src*="botpress"]::-webkit-scrollbar,
-            .bp-widget-web-container .bp-widget-web-footer,
-            [class*="footer"],
-            [class*="powered"] {
+// --- INTEGRACIÓN AVANZADA: REMOVER BRANDING MEDIANTE OBSERVADOR DE DOM ---
+const observer = new MutationObserver(() => {
+    // Busca las clases y componentes típicos que usa el contenedor v2 de Botpress
+    const elementosBranding = document.querySelectorAll('[class*="powered"], [class*="footer"], .bp-widget-web-footer');
+    elementosBranding.forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+        el.style.setProperty('opacity', '0', 'important');
+        el.style.setProperty('visibility', 'hidden', 'important');
+        el.style.setProperty('height', '0', 'important');
+    });
+
+
+    if (!document.getElementById('hide-botpress-style')) {
+        const estilo = document.createElement('style');
+        estilo.id = 'hide-botpress-style';
+        estilo.innerHTML = `
+            [class*="powered"], [class*="footer"], .bp-widget-web-footer {
                 display: none !important;
                 opacity: 0 !important;
                 visibility: hidden !important;
                 height: 0 !important;
                 padding: 0 !important;
             }
-        `);
-        return window.botpress.init(config);
+        `;
+        document.head.appendChild(estilo);
     }
-};
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
