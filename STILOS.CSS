@@ -414,19 +414,43 @@ main {
     }
 }
 
-/* --- TRUCO CORRECCIÓN DE LOGO BOTPRESS --- */
-div[style*="position: fixed"] {
-    overflow: hidden !important; 
+
+#botpress-shield-container {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    z-index: 999999; 
+    pointer-events: none; 
 }
 
-iframe[src*="botpress"] {
-    max-height: calc(100vh - 40px) !important;
-    clip-path: inset(0px 0px 35px 0px) !important;
-    margin-bottom: -35px !important;
+
+#botpress-click-trigger {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto; 
 }
 
 
-/* --- RESPONSIVE DESIGN --- */
+#botpress-logo-patch {
+    display: none; 
+    position: absolute;
+    bottom: 0px;  
+    right: 0px;
+    width: 360px; 
+    height: 40px; 
+    background-color: #1e293b; 
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    pointer-events: none;
+}
+
+
+
 @media screen and (max-width: 768px) {
     header {
         padding: 15px;
