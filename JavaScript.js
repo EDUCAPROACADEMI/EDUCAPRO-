@@ -130,7 +130,7 @@ function validarContrasena() {
     }
 }
 
-// Panel del Tutor
+
 function mostrarPanelTutor() {
     stepTutorDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
@@ -156,7 +156,7 @@ document.getElementById('btn-send-announcement').addEventListener('click', () =>
     });
 });
 
-// Panel del Alumno
+
 function mostrarPanelAlumno() {
     stepAlumnoDashboard.style.display = 'block';
     const cursoRef = ref(db, 'cursos/' + cursoActivo);
@@ -192,7 +192,7 @@ document.getElementById('btn-go-to-meet').addEventListener('click', () => {
     }
 });
 
-// Menú de Navegación Lateral
+
 const seccionesMenu = [
     { btnId: 'menu-dashboard', sectionId: 'sec-dashboard' },
     { btnId: 'menu-estudiantes', sectionId: 'sec-estudiantes' },
@@ -241,10 +241,8 @@ let chatAbierto = false;
 if (clickTrigger && logoPatch) {
     clickTrigger.addEventListener('click', () => {
         if (!chatAbierto) {
-           
             logoPatch.style.display = 'block';
             
-          
             clickTrigger.style.bottom = '555px'; 
             clickTrigger.style.right = '10px';
             clickTrigger.style.width = '45px';
@@ -252,7 +250,6 @@ if (clickTrigger && logoPatch) {
             
             chatAbierto = true;
         } else {
-         
             logoPatch.style.display = 'none';
             
             clickTrigger.style.bottom = '0';
