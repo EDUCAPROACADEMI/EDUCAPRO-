@@ -101,7 +101,6 @@ nav ul li a.active {
     padding-top: 73px; 
 }
 
-
 .sidebar-panel {
     width: 260px;
     background: rgba(7, 10, 19, 0.4);
@@ -156,7 +155,7 @@ main {
     overflow-y: auto;
 }
 
-/* --- TEXTOS --- */
+
 .welcome-text {
     margin-bottom: 30px;
 }
@@ -191,7 +190,6 @@ main {
     font-size: 1rem;
     max-width: 600px;
 }
-
 
 .dashboard-metrics {
     display: grid;
@@ -256,7 +254,6 @@ main {
     box-shadow: 0 0 25px rgba(255, 107, 0, 0.15);
     transform: translateY(-4px);
 }
-
 
 .tabla-tarifas-container {
     width: 100%;
@@ -423,6 +420,16 @@ div[style*="position: fixed"] iframe[src*="botpress"] {
     max-height: calc(100vh - 40px) !important;
 }
 
+iframe[src*="botpress"]::-webkit-scrollbar,
+iframe[src*="botpress"] .bp-widget-web-container .bp-widget-web-footer,
+iframe[src*="botpress"] [class*="footer"],
+iframe[src*="botpress"] [class*="powered"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    padding: 0 !important;
+}
 
 
 @media screen and (max-width: 768px) {
@@ -430,7 +437,7 @@ div[style*="position: fixed"] iframe[src*="botpress"] {
         padding: 15px;
         flex-direction: column;
         gap: 12px;
-        position: static; /* Deja de ser flotante */
+        position: static; 
     }
 
     .logo {
