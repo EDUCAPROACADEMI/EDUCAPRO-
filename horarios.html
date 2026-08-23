@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDUCA PRO+ | Horarios de Cursos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="STILOS.CSS">
 </head>
 <body>
@@ -13,108 +14,169 @@
         <nav>
             <ul>
                 <li><a href="menuacademia.html">Inicio</a></li>
-                <li><a href="informacion.html">Información</a></li>
-                <li><a href="inscripciones.html">Inscripciones</a></li>
-                <li><a href="contactanos.html">Contáctanos</a></li>
-                <li><a href="horarios.html" class="active">Horarios</a></li>
-                <li><a href="cursos adicionales.html">Cursos</a></li>
-                <li><a href="metodo.html">Método</a></li>
-                <li><a href="personal.html">Personal</a></li>
+                <li><a href="#" id="btn-pre-icfes">PRE ICFES</a></li>
+                <li><a href="#" id="btn-programacion">PROGRAMACION</a></li>
+                <li><a href="#" id="btn-marketing">MARKETING</a></li>
+                <li><a href="#" id="btn-refuerzo">REFUERZO</a></li>
+                <li><a href="preguntas.html">PREGUNTAS</a></li>
+                <li><a href="horarios.html" class="active">HORARIOS</a></li>
+                <li><a href="#" id="btn-abrir-admin" style="color: var(--cyan-neon);">ADMINISTRADOR</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <div class="welcome-text">
-            <h1>Cronograma de <span>Clases</span></h1> 
-            <p>Conoce la distribución oficial de nuestros cursos por días, horas y tutores encargados. ¡Programación diseñada para tu éxito!</p>
-        </div>
+    <div class="app-layout" style="display: block; padding: 40px 5%;">
+        <main style="padding: 0;">
+            <div class="welcome-text">
+                <h1>Cronograma de <span>Clases</span></h1> 
+                <p>Conoce la distribución oficial de nuestros cursos por días, horas y tutores encargados. ¡Programación diseñada para tu éxito!</p>
+            </div>
 
-        <div class="menu-grid">
+            <div class="dashboard-metrics" style="margin-bottom: 40px;">
+                
+                <div class="metric-card cyan">
+                    <div class="metric-header">
+                        <h4>Refuerzo Escolar</h4>
+                        <span class="material-symbols-outlined">library_books</span>
+                    </div>
+                    <p style="color: var(--text-white); font-weight: bold; margin-bottom: 8px;">Lunes y Viernes</p>
+                    <p class="text-cyan" style="font-size: 0.95rem; margin-bottom: 12px;">(((esperando))).</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);"><strong>Tutor 1:</strong> (((esperando)))</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);"><strong>Tutor 2:</strong> (((esperando)))</p>
+                </div>
+
+                <div class="metric-card purple">
+                    <div class="metric-header">
+                        <h4>Pre-Icfes (Saber 11)</h4>
+                        <span class="material-symbols-outlined">target</span>
+                    </div>
+                    <p style="color: var(--text-white); font-weight: bold; margin-bottom: 8px;">Sábados Intensivos</p>
+                    <p class="text-purple" style="font-size: 0.95rem; margin-bottom: 12px;">(((esperando))).</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);"><strong>Tutores 1, 2 y 3:</strong> (((esperando)))</p>
+                </div>
+
+                <div class="metric-card orange">
+                    <div class="metric-header">
+                        <h4>Desarrollo Web</h4>
+                        <span class="material-symbols-outlined">code</span>
+                    </div>
+                    <p style="color: var(--text-white); font-weight: bold; margin-bottom: 8px;">Lunes, Martes y Miércoles</p>
+                    <p class="text-orange" style="font-size: 0.95rem; margin-bottom: 12px;">(((esperando))).</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);"><strong>Tutor 3:</strong> HTML, CSS, layouts y UX/UI.</p>
+                </div>
+
+                <div class="metric-card cyan">
+                    <div class="metric-header">
+                        <h4>Marketing Digital</h4>
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <p style="color: var(--text-white); font-weight: bold; margin-bottom: 8px;">Jueves y Viernes</p>
+                    <p class="text-cyan" style="font-size: 0.95rem; margin-bottom: 12px;">(((esperando))).</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);"><strong>Tutor 4:</strong> Pauta y estrategias.</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);"><strong>Tutor 5:</strong> Automatizaciones y bots.</p>
+                </div>
+
+            </div>
+
+            <div class="welcome-text" style="margin-top: 50px; margin-bottom: 20px;">
+                <h2>Vista Semanal <span>Rápida</span></h2>
+            </div>
+
+            <div class="tabla-tarifas-container">
+                <table class="tabla-tarifas">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Bloque 1</th>
+                            <th>Bloque 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Lunes</strong></td>
+                            <td>Refuerzo Académico (Tutores 1 y 2)</td>
+                            <td>Creación Web & Maquetación (Tutor 3)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Martes</strong></td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td>Creación Web & Maquetación (Tutor 3)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Miércoles</strong></td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td>Creación Web & Maquetación (Tutor 3)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jueves</strong></td>
+                            <td style="color: rgba(255,255,255,0.2);">—</td>
+                            <td>Automatización & Marketing (Tutores 4 y 5)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Viernes</strong></td>
+                            <td>Refuerzo Académico (Tutores 1 y 2)</td>
+                            <td>Automatización & Marketing (Tutores 4 y 5)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sábado</strong></td>
+                            <td colspan="2" style="text-align: center;" class="text-purple"><strong>8:00 AM - 1:00 PM:</strong> Pre-Icfes Saber 11 (Jornada Especial - Tutores 1, 2 y 3)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL DE CONTRASEÑA PARA LOS CURSOS -->
+    <div id="modal-password" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
             
-            <div class="card-module cyan">
-                <div class="icon-container">📚</div>
-                <h3>Refuerzo Académico (8° a 11°)</h3>
-                <p style="color: var(--text-white); font-weight: bold; margin-bottom: 5px;">Lunes y Viernes</p>
-                <p class="text-cyan" style="font-size: 0.95rem; margin-bottom: 10px;"> (((esperando))).</p>
-                <p><strong>Tutor 1:</strong> (((esperando))).</p>
-                <p><strong>Tutor 2:</strong> (((esperando))).</p>
+            <div id="step-role-selection">
+                <h3>Control de Acceso</h3>
+                <p>Selecciona tu rol para ingresar:</p>
+                <button id="btn-select-tutor" style="width: 100%; margin-bottom: 10px; background: #a855f7; color: white;">Soy Tutor</button>
+                <button id="btn-select-alumno" style="width: 100%; background: #00f0ff; color: black;">Soy Alumno</button>
             </div>
 
-            <div class="card-module purple">
-                <div class="icon-container">🎯</div>
-                <h3>Pre-Icfes (Saber 11)</h3>
-                <p style="color: var(--text-white); font-weight: bold; margin-bottom: 5px;">Sábados Intensivos</p>
-                <p class="text-purple" style="font-size: 0.95rem; margin-bottom: 10px;"> (((esperando))).</p>
-                <p><strong>Tutores 1, 2 y 3:</strong> (((esperando))).</p>
+            <div id="step-login" style="display: none;">
+                <h3 id="login-title">Control de Acceso</h3>
+                <p id="login-description"></p>
+                <input type="password" id="input-pass" placeholder="Ingresa la contraseña">
+                <button id="btn-submit-pass">Ingresar</button>
+                <p id="error-msg" style="color: #ff5555; display: none; margin-top: 10px;">Contraseña incorrecta. Inténtalo de nuevo.</p>
             </div>
 
-            <div class="card-module orange">
-                <div class="icon-container">💻</div>
-                <h3>Desarrollo Web & Maquetación</h3>
-                <p style="color: var(--text-white); font-weight: bold; margin-bottom: 5px;">Lunes, Martes y Miércoles</p>
-                <p class="text-orange" style="font-size: 0.95rem; margin-bottom: 10px;"> (((esperando))).</p>
-                <p><strong>Tutor 3:</strong> Especialista en código HTML, CSS, layouts modernos y diseño UX/UI.</p>
+            <div id="step-tutor-dashboard" style="display: none;">
+                <h3>Panel del Tutor</h3>
+                <p>Escribe el código o enlace de Google Meet para los alumnos:</p>
+                <input type="text" id="tutor-message" placeholder="Ej: abc-defg-hij o enlace completo">
+                <button id="btn-send-announcement" style="background: #a855f7; color: white; width: 100%; margin-top: 10px;">Enviar a Alumnos</button>
+                <p id="tutor-success-msg" style="color: #55ff55; display: none; margin-top: 10px;">¡Enviado exitosamente!</p>
             </div>
 
-            <div class="card-module cyan">
-                <div class="icon-container">🤖</div>
-                <h3>Automatización & Marketing</h3>
-                <p style="color: var(--text-white); font-weight: bold; margin-bottom: 5px;">Jueves y Viernes</p>
-                <p class="text-cyan" style="font-size: 0.95rem; margin-bottom: 10px;">(((esperando))).</p>
-                <p><strong>Tutor 4:</strong> Experto en pauta digital y estrategias de venta.</p>
-                <p><strong>Tutor 5:</strong> Desarrollador de integraciones y bots automatizados.</p>
+            <div id="step-alumno-dashboard" style="display: none;">
+                <h3>Anuncio de la Clase</h3>
+                <p>Copia el código asignado por tu tutor:</p>
+                <input type="text" id="alumno-received-message" readonly style="text-align: center; font-weight: bold; background: #2d3748; color: white;">
+                <button id="btn-copy-code" style="width: 100%; margin-top: 10px; background: #4a5568; color: white;">Copiar Código</button>
+                <button id="btn-go-to-meet" style="width: 100%; margin-top: 10px; background: #00f0ff; color: black; font-weight: bold;">OK (Ir a Google Meet)</button>
             </div>
-
         </div>
+    </div>
 
-        <div class="welcome-text" style="margin-top: 60px; margin-bottom: 30px;">
-            <h2>Vista Semanal <span>Rápida</span></h2>
+    <!-- MODAL DE CONTRASEÑA PARA EL ADMINISTRADOR -->
+    <div id="modal-admin-password" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal-admin">&times;</span>
+            <h3>Seguridad Administrador</h3>
+            <p>Ingresa la contraseña maestra para acceder al panel de configuración:</p>
+            <input type="password" id="input-admin-pass" placeholder="Contraseña de administrador">
+            <button id="btn-submit-admin-pass">Verificar</button>
+            <p id="admin-error-msg" style="color: #ff5555; display: none; margin-top: 10px;">Contraseña incorrecta.</p>
         </div>
+    </div>
 
-        <div class="tabla-tarifas-container">
-            <table class="tabla-tarifas">
-                <thead>
-                    <tr>
-                        <th>Día</th>
-                        <th>Bloque 1 ((((esperando))))</th>
-                        <th>Bloque 2 ((((esperando))))</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Lunes</strong></td>
-                        <td>Refuerzo Académico (Tutores 1 y 2)</td>
-                        <td>Creación Web & Maquetación (Tutor 3)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Martes</strong></td>
-                        <td style="color: rgba(255,255,255,0.2);">—</td>
-                        <td>Creación Web & Maquetación (Tutor 3)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Miércoles</strong></td>
-                        <td style="color: rgba(255,255,255,0.2);">—</td>
-                        <td>Creación Web & Maquetación (Tutor 3)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Jueves</strong></td>
-                        <td style="color: rgba(255,255,255,0.2);">—</td>
-                        <td>Automatización & Marketing (Tutores 4 y 5)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Viernes</strong></td>
-                        <td>Refuerzo Académico (Tutores 1 y 2)</td>
-                        <td>Automatización & Marketing (Tutores 4 y 5)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sábado</strong></td>
-                        <td colspan="2" style="text-align: center;" class="text-purple"><strong>8:00 AM - 1:00 PM:</strong> Pre-Icfes Saber 11 (Jornada Especial - Tutores 1, 2 y 3)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-
+    <script type="module" src="JavaScript.js"></script>
 </body>
 </html>
