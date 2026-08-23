@@ -20,7 +20,7 @@ let cursoActivo = '';
 let cursoActivoLabel = '';
 let FirebaseListener = null; 
 
-// Elementos del Modal
+
 const modal = document.getElementById('modal-password');
 const closeModal = document.getElementById('close-modal');
 const stepRoleSelection = document.getElementById('step-role-selection');
@@ -32,7 +32,7 @@ const inputPass = document.getElementById('input-pass');
 const btnSubmitPass = document.getElementById('btn-submit-pass');
 const errorMsg = document.getElementById('error-msg');
 
-// Función directa para abrir el modal según el curso al que se haga clic
+
 function configurarCurso(idBtn, nombreCurso, labelCurso) {
     const btn = document.getElementById(idBtn);
     if (btn) {
@@ -48,7 +48,7 @@ function configurarCurso(idBtn, nombreCurso, labelCurso) {
     }
 }
 
-// Vinculamos cada botón del menú superior
+
 configurarCurso('btn-pre-icfes', 'PRE_ICFES', 'PRE ICFES');
 configurarCurso('btn-programacion', 'PROGRAMACION', 'PROGRAMACIÓN');
 configurarCurso('btn-marketing', 'MARKETING', 'MARKETING');
@@ -211,7 +211,7 @@ if(btnGoToMeet) {
     });
 }
 
-// Lógica de Administrador
+
 const modalAdmin = document.getElementById('modal-admin-password');
 const btnAbrirAdmin = document.getElementById('btn-abrir-admin');
 const closeModalAdmin = document.getElementById('close-modal-admin');
