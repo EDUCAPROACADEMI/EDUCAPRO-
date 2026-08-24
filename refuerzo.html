@@ -85,5 +85,23 @@
     </div>
 
     <script type="module" src="JavaScript.js"></script>
+    <script>
+    // 1. Bloquear el clic derecho para que no salga el menú de "Ver código fuente" o "Inspeccionar"
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // 2. Bloquear atajos de teclado comunes (F12, Ctrl+U, Ctrl+Shift+I, etc.)
+    document.addEventListener('keydown', function(e) {
+        if (
+            e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+            (e.ctrlKey && e.key === 'U')
+        ) {
+            e.preventDefault();
+            alert('Esta acción está bloqueada por seguridad.');
+        }
+    });
+</script>
 </body>
 </html>
