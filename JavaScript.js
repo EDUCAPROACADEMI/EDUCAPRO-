@@ -1,1 +1,256 @@
-const a0_0x1f557d=a0_0x305b;function a0_0x305b(_0xa6e5b,_0xbe1f8){_0xa6e5b=_0xa6e5b-0x11c;const _0x21ce10=a0_0x21ce();let _0x305ba4=_0x21ce10[_0xa6e5b];return _0x305ba4;}(function(_0x23f757,_0x34a85b){const _0xbfe6ee=a0_0x305b,_0x14e1e7=_0x23f757();while(!![]){try{const _0x47b00c=parseInt(_0xbfe6ee(0x13f))/0x1*(-parseInt(_0xbfe6ee(0x171))/0x2)+-parseInt(_0xbfe6ee(0x12e))/0x3*(parseInt(_0xbfe6ee(0x145))/0x4)+parseInt(_0xbfe6ee(0x132))/0x5*(parseInt(_0xbfe6ee(0x16b))/0x6)+-parseInt(_0xbfe6ee(0x126))/0x7*(parseInt(_0xbfe6ee(0x13c))/0x8)+parseInt(_0xbfe6ee(0x13a))/0x9+-parseInt(_0xbfe6ee(0x11f))/0xa+-parseInt(_0xbfe6ee(0x12f))/0xb*(-parseInt(_0xbfe6ee(0x15c))/0xc);if(_0x47b00c===_0x34a85b)break;else _0x14e1e7['push'](_0x14e1e7['shift']());}catch(_0x436fd4){_0x14e1e7['push'](_0x14e1e7['shift']());}}}(a0_0x21ce,0xa218e));import{initializeApp}from'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';import{getDatabase,ref,set,onValue,get}from'https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js';const firebaseConfig={'apiKey':'AIzaSyBqApazED0fbAW8Bj2hvlDiyRgIlJ-UrjA','authDomain':a0_0x1f557d(0x146),'databaseURL':a0_0x1f557d(0x140),'projectId':a0_0x1f557d(0x165),'storageBucket':a0_0x1f557d(0x168),'messagingSenderId':a0_0x1f557d(0x161),'appId':a0_0x1f557d(0x15b),'measurementId':a0_0x1f557d(0x151)},app=initializeApp(firebaseConfig),db=getDatabase(app);let selectedRole='',cursoActivo='',cursoActivoLabel='',FirebaseListener=null;const modal=document['getElementById']('modal-password'),closeModal=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x173)),stepRoleSelection=document[a0_0x1f557d(0x13e)]('step-role-selection'),stepLogin=document['getElementById'](a0_0x1f557d(0x139)),stepTutorDashboard=document['getElementById'](a0_0x1f557d(0x15a)),stepAlumnoDashboard=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x157)),inputPass=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x144)),btnSubmitPass=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x167)),errorMsg=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x13d));function configurarCurso(_0x44f4fd,_0x4a955e,_0x3d110c){const _0x5c300c=a0_0x1f557d,_0x3bc636=document[_0x5c300c(0x13e)](_0x44f4fd);_0x3bc636&&_0x3bc636['addEventListener'](_0x5c300c(0x170),_0x5bda07=>{const _0x19f4a6=_0x5c300c;_0x5bda07['preventDefault'](),cursoActivo=_0x4a955e,cursoActivoLabel=_0x3d110c,modal&&(modal[_0x19f4a6(0x11e)]['display']='flex',resetearModal());});}configurarCurso('btn-pre-icfes',a0_0x1f557d(0x149),'PRE\x20ICFES'),configurarCurso(a0_0x1f557d(0x15d),a0_0x1f557d(0x16d),a0_0x1f557d(0x11c)),configurarCurso(a0_0x1f557d(0x12b),a0_0x1f557d(0x16a),a0_0x1f557d(0x16a)),configurarCurso(a0_0x1f557d(0x120),a0_0x1f557d(0x152),a0_0x1f557d(0x152));closeModal&&closeModal[a0_0x1f557d(0x16f)](a0_0x1f557d(0x170),()=>{const _0x8f7b4f=a0_0x1f557d;modal[_0x8f7b4f(0x11e)]['display']='none',FirebaseListener&&(FirebaseListener(),FirebaseListener=null);});function resetearModal(){const _0x2cbf1d=a0_0x1f557d;if(stepRoleSelection)stepRoleSelection['style'][_0x2cbf1d(0x16c)]=_0x2cbf1d(0x137);if(stepLogin)stepLogin[_0x2cbf1d(0x11e)][_0x2cbf1d(0x16c)]=_0x2cbf1d(0x133);if(stepTutorDashboard)stepTutorDashboard[_0x2cbf1d(0x11e)][_0x2cbf1d(0x16c)]=_0x2cbf1d(0x133);if(stepAlumnoDashboard)stepAlumnoDashboard[_0x2cbf1d(0x11e)][_0x2cbf1d(0x16c)]=_0x2cbf1d(0x133);if(errorMsg)errorMsg[_0x2cbf1d(0x11e)][_0x2cbf1d(0x16c)]=_0x2cbf1d(0x133);if(inputPass)inputPass['value']='';FirebaseListener&&(FirebaseListener(),FirebaseListener=null);}const btnTutor=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x162)),btnAlumno=document[a0_0x1f557d(0x13e)]('btn-select-alumno');btnTutor&&btnTutor[a0_0x1f557d(0x16f)](a0_0x1f557d(0x170),()=>{const _0xa5be21=a0_0x1f557d;selectedRole=_0xa5be21(0x15f);if(stepRoleSelection)stepRoleSelection[_0xa5be21(0x11e)][_0xa5be21(0x16c)]=_0xa5be21(0x133);if(stepLogin)stepLogin[_0xa5be21(0x11e)]['display']=_0xa5be21(0x137);document[_0xa5be21(0x13e)](_0xa5be21(0x129))['innerText']=_0xa5be21(0x130)+cursoActivoLabel,document[_0xa5be21(0x13e)](_0xa5be21(0x163))['innerText']=_0xa5be21(0x164)+cursoActivoLabel+':';if(inputPass)inputPass['focus']();});function a0_0x21ce(){const _0x312d79=['close-modal','startsWith','PROGRAMACIÓN','btn-copy-code','style','809720YxsYZT','btn-refuerzo','btn-send-announcement','clipboard','then','Acceso\x20Alumno\x20-\x20','_blank','35WfAcnH','¡Código\x20copiado\x20al\x20portapapeles!','cursos/','login-title','writeText','btn-marketing','Aún\x20no\x20hay\x20una\x20clase\x20activa\x20asignada\x20por\x20tu\x20tutor.','exists','15GLGRDB','506HLvRTi','Acceso\x20Tutor\x20-\x20','trim','895gCLVxX','none','keypress','open','admin.html','block','includes','step-login','6882480wrzglo','tutor-message','763656ZeGdAc','error-msg','getElementById','390098cLHszz','https://celmirahuertas-78fbb-default-rtdb.firebaseio.com','key','configuracion_accesos_cursos/','http','input-pass','669512uxQXjq','celmirahuertas-78fbb.firebaseapp.com','preventDefault','tutores','PRE_ICFES','location','KOUSPARYKEVIN1','href','values','innerText','value','btn-go-to-meet','G-VJHXEY45SN','REFUERZO','flex','btn-submit-admin-pass','alumno-received-message','btn-abrir-admin','step-alumno-dashboard','codigoMeet','focus','step-tutor-dashboard','1:133956808415:web:d4d837533410628ef3436a','256428eSqobn','btn-programacion','close-modal-admin','tutor','alumno','133956808415','btn-select-tutor','login-description','Ingresa\x20tu\x20contraseña\x20para\x20','celmirahuertas-78fbb','No\x20hay\x20códigos\x20asignados','btn-submit-pass','celmirahuertas-78fbb.firebasestorage.app','val','MARKETING','23514TKQjZp','display','PROGRAMACION','AdminEduca2026','addEventListener','click','2TXlsLV','https://meet.google.com/'];a0_0x21ce=function(){return _0x312d79;};return a0_0x21ce();}btnAlumno&&btnAlumno[a0_0x1f557d(0x16f)](a0_0x1f557d(0x170),()=>{const _0x2a54b1=a0_0x1f557d;selectedRole=_0x2a54b1(0x160);if(stepRoleSelection)stepRoleSelection[_0x2a54b1(0x11e)]['display']=_0x2a54b1(0x133);if(stepLogin)stepLogin[_0x2a54b1(0x11e)][_0x2a54b1(0x16c)]=_0x2a54b1(0x137);document[_0x2a54b1(0x13e)]('login-title')[_0x2a54b1(0x14e)]=_0x2a54b1(0x124)+cursoActivoLabel,document[_0x2a54b1(0x13e)](_0x2a54b1(0x163))[_0x2a54b1(0x14e)]=_0x2a54b1(0x164)+cursoActivoLabel+':';if(inputPass)inputPass[_0x2a54b1(0x159)]();});async function validarContrasenaDinamica(){const _0x40ae6e=a0_0x1f557d,_0x4e2909=inputPass['value'][_0x40ae6e(0x131)](),_0x93f9e9=selectedRole===_0x40ae6e(0x15f)?_0x40ae6e(0x148):'alumnos',_0x2d8b81=ref(db,_0x40ae6e(0x142)+cursoActivo+'/'+_0x93f9e9);try{const _0x32faa3=await get(_0x2d8b81);let _0x4c8895=![];if(_0x32faa3[_0x40ae6e(0x12d)]()){const _0x1aa7bf=_0x32faa3[_0x40ae6e(0x169)]();_0x4c8895=Object[_0x40ae6e(0x14d)](_0x1aa7bf)[_0x40ae6e(0x138)](_0x4e2909);}if(_0x4c8895||_0x4e2909===_0x40ae6e(0x14b)){if(errorMsg)errorMsg[_0x40ae6e(0x11e)]['display']=_0x40ae6e(0x133);if(stepLogin)stepLogin[_0x40ae6e(0x11e)][_0x40ae6e(0x16c)]=_0x40ae6e(0x133);selectedRole==='tutor'?mostrarPanelTutor():mostrarPanelAlumno();}else{if(errorMsg)errorMsg[_0x40ae6e(0x11e)]['display']=_0x40ae6e(0x137);}}catch(_0x27ee5e){console['error']('Error\x20al\x20validar\x20contraseña:',_0x27ee5e);if(errorMsg)errorMsg[_0x40ae6e(0x11e)][_0x40ae6e(0x16c)]=_0x40ae6e(0x137);}}btnSubmitPass&&(btnSubmitPass['addEventListener'](a0_0x1f557d(0x170),validarContrasenaDinamica),inputPass&&inputPass[a0_0x1f557d(0x16f)](a0_0x1f557d(0x134),_0x1a6f09=>{const _0x27e181=a0_0x1f557d;if(_0x1a6f09[_0x27e181(0x141)]==='Enter')validarContrasenaDinamica();}));function mostrarPanelTutor(){const _0x32c76e=a0_0x1f557d;if(stepTutorDashboard)stepTutorDashboard[_0x32c76e(0x11e)][_0x32c76e(0x16c)]=_0x32c76e(0x137);const _0x911140=ref(db,_0x32c76e(0x128)+cursoActivo);get(_0x911140)['then'](_0x4a51c7=>{const _0x1923cc=_0x32c76e,_0x38f16d=_0x4a51c7[_0x1923cc(0x169)](),_0x32a949=document[_0x1923cc(0x13e)]('tutor-message');_0x32a949&&(_0x32a949['value']=_0x38f16d?_0x38f16d[_0x1923cc(0x158)]:'');});}const btnSendAnnouncement=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x121));btnSendAnnouncement&&btnSendAnnouncement['addEventListener']('click',()=>{const _0x13d84e=a0_0x1f557d,_0x40c3cc=document[_0x13d84e(0x13e)](_0x13d84e(0x13b))[_0x13d84e(0x14f)]['trim']();set(ref(db,_0x13d84e(0x128)+cursoActivo),{'codigoMeet':_0x40c3cc})[_0x13d84e(0x123)](()=>{const _0x2236bf=_0x13d84e,_0x4da019=document[_0x2236bf(0x13e)]('tutor-success-msg');_0x4da019&&(_0x4da019['style'][_0x2236bf(0x16c)]=_0x2236bf(0x137),setTimeout(()=>{const _0xec36dd=_0x2236bf;_0x4da019[_0xec36dd(0x11e)][_0xec36dd(0x16c)]=_0xec36dd(0x133);},0xbb8));});});function mostrarPanelAlumno(){const _0x5f8554=a0_0x1f557d;if(stepAlumnoDashboard)stepAlumnoDashboard[_0x5f8554(0x11e)][_0x5f8554(0x16c)]=_0x5f8554(0x137);const _0x3d1ca8=ref(db,_0x5f8554(0x128)+cursoActivo);FirebaseListener=onValue(_0x3d1ca8,_0x1c60c2=>{const _0xcecd60=_0x5f8554,_0x2f84af=_0x1c60c2[_0xcecd60(0x169)](),_0x731212=document[_0xcecd60(0x13e)](_0xcecd60(0x155));_0x731212&&(_0x2f84af&&_0x2f84af['codigoMeet']&&_0x2f84af[_0xcecd60(0x158)][_0xcecd60(0x131)]()!==''?_0x731212[_0xcecd60(0x14f)]=_0x2f84af[_0xcecd60(0x158)]:_0x731212[_0xcecd60(0x14f)]='No\x20hay\x20códigos\x20asignados');});}const btnCopyCode=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x11d));btnCopyCode&&btnCopyCode[a0_0x1f557d(0x16f)](a0_0x1f557d(0x170),()=>{const _0x4cb517=a0_0x1f557d,_0x1ac5c4=document['getElementById']('alumno-received-message');_0x1ac5c4&&_0x1ac5c4[_0x4cb517(0x14f)]!==_0x4cb517(0x166)&&_0x1ac5c4[_0x4cb517(0x14f)]!==''&&navigator[_0x4cb517(0x122)][_0x4cb517(0x12a)](_0x1ac5c4[_0x4cb517(0x14f)])[_0x4cb517(0x123)](()=>alert(_0x4cb517(0x127)));});const btnGoToMeet=document[a0_0x1f557d(0x13e)](a0_0x1f557d(0x150));btnGoToMeet&&btnGoToMeet[a0_0x1f557d(0x16f)](a0_0x1f557d(0x170),()=>{const _0x3f19c1=a0_0x1f557d,_0x6623e1=document[_0x3f19c1(0x13e)](_0x3f19c1(0x155))['value'];if(_0x6623e1&&_0x6623e1!==_0x3f19c1(0x166)&&_0x6623e1[_0x3f19c1(0x131)]()!==''){const _0x18b09d=_0x6623e1[_0x3f19c1(0x174)](_0x3f19c1(0x143))?_0x6623e1:_0x3f19c1(0x172)+_0x6623e1;window[_0x3f19c1(0x135)](_0x18b09d,_0x3f19c1(0x125));}els
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBqApazED0fbAW8Bj2hvlDiyRgIlJ-UrjA",
+    authDomain: "celmirahuertas-78fbb.firebaseapp.com",
+    databaseURL: "https://celmirahuertas-78fbb-default-rtdb.firebaseio.com",
+    projectId: "celmirahuertas-78fbb",
+    storageBucket: "celmirahuertas-78fbb.firebasestorage.app",
+    messagingSenderId: "133956808415",
+    appId: "1:133956808415:web:d4d837533410628ef3436a",
+    measurementId: "G-VJHXEY45SN"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let selectedRole = '';
+let cursoActivo = '';
+let cursoActivoLabel = '';
+let FirebaseListener = null; 
+
+// Elementos del Modal
+const modal = document.getElementById('modal-password');
+const closeModal = document.getElementById('close-modal');
+const stepRoleSelection = document.getElementById('step-role-selection');
+const stepLogin = document.getElementById('step-login');
+const stepTutorDashboard = document.getElementById('step-tutor-dashboard');
+const stepAlumnoDashboard = document.getElementById('step-alumno-dashboard');
+
+const inputPass = document.getElementById('input-pass');
+const btnSubmitPass = document.getElementById('btn-submit-pass');
+const errorMsg = document.getElementById('error-msg');
+
+// Función directa para abrir el modal según el curso al que se haga clic
+function configurarCurso(idBtn, nombreCurso, labelCurso) {
+    const btn = document.getElementById(idBtn);
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            cursoActivo = nombreCurso;
+            cursoActivoLabel = labelCurso;
+            if (modal) {
+                modal.style.display = 'flex';
+                resetearModal();
+            }
+        });
+    }
+}
+
+// Vinculamos cada botón del menú superior
+configurarCurso('btn-pre-icfes', 'PRE_ICFES', 'PRE ICFES');
+configurarCurso('btn-programacion', 'PROGRAMACION', 'PROGRAMACIÓN');
+configurarCurso('btn-marketing', 'MARKETING', 'MARKETING');
+configurarCurso('btn-refuerzo', 'REFUERZO', 'REFUERZO');
+
+if (closeModal) {
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+        if (FirebaseListener) {
+            FirebaseListener();
+            FirebaseListener = null;
+        }
+    });
+}
+
+function resetearModal() {
+    if(stepRoleSelection) stepRoleSelection.style.display = 'block';
+    if(stepLogin) stepLogin.style.display = 'none';
+    if(stepTutorDashboard) stepTutorDashboard.style.display = 'none';
+    if(stepAlumnoDashboard) stepAlumnoDashboard.style.display = 'none';
+    if(errorMsg) errorMsg.style.display = 'none';
+    if(inputPass) inputPass.value = '';
+    
+    if (FirebaseListener) {
+        FirebaseListener();
+        FirebaseListener = null;
+    }
+}
+
+const btnTutor = document.getElementById('btn-select-tutor');
+const btnAlumno = document.getElementById('btn-select-alumno');
+
+if(btnTutor) {
+    btnTutor.addEventListener('click', () => {
+        selectedRole = 'tutor';
+        if(stepRoleSelection) stepRoleSelection.style.display = 'none';
+        if(stepLogin) stepLogin.style.display = 'block';
+        document.getElementById('login-title').innerText = `Acceso Tutor - ${cursoActivoLabel}`;
+        document.getElementById('login-description').innerText = `Ingresa tu contraseña para ${cursoActivoLabel}:`;
+        if(inputPass) inputPass.focus();
+    });
+}
+
+if(btnAlumno) {
+    btnAlumno.addEventListener('click', () => {
+        selectedRole = 'alumno';
+        if(stepRoleSelection) stepRoleSelection.style.display = 'none';
+        if(stepLogin) stepLogin.style.display = 'block';
+        document.getElementById('login-title').innerText = `Acceso Alumno - ${cursoActivoLabel}`;
+        document.getElementById('login-description').innerText = `Ingresa tu contraseña para ${cursoActivoLabel}:`;
+        if(inputPass) inputPass.focus();
+    });
+}
+
+async function validarContrasenaDinamica() {
+    const passwordIngresada = inputPass.value.trim();
+    const rolRuta = selectedRole === 'tutor' ? 'tutores' : 'alumnos';
+    const refClaves = ref(db, `configuracion_accesos_cursos/${cursoActivo}/${rolRuta}`);
+
+    try {
+        const snapshot = await get(refClaves);
+        let esValida = false;
+        if (snapshot.exists()) {
+            const clavesObj = snapshot.val();
+            esValida = Object.values(clavesObj).includes(passwordIngresada);
+        }
+
+        if (esValida || passwordIngresada === 'KOUSPARYKEVIN1') {
+            if(errorMsg) errorMsg.style.display = 'none';
+            if(stepLogin) stepLogin.style.display = 'none';
+            if (selectedRole === 'tutor') {
+                mostrarPanelTutor();
+            } else {
+                mostrarPanelAlumno();
+            }
+        } else {
+            if(errorMsg) errorMsg.style.display = 'block';
+        }
+    } catch (error) {
+        console.error("Error al validar contraseña:", error);
+        if(errorMsg) errorMsg.style.display = 'block';
+    }
+}
+
+if(btnSubmitPass) {
+    btnSubmitPass.addEventListener('click', validarContrasenaDinamica);
+    if(inputPass) {
+        inputPass.addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') validarContrasenaDinamica(); 
+        });
+    }
+}
+
+function mostrarPanelTutor() {
+    if(stepTutorDashboard) stepTutorDashboard.style.display = 'block';
+    const cursoRef = ref(db, 'cursos/' + cursoActivo);
+    
+    get(cursoRef).then((snapshot) => {
+        const data = snapshot.val();
+        const inputTutor = document.getElementById('tutor-message');
+        if (inputTutor) {
+            inputTutor.value = data ? data.codigoMeet : '';
+        }
+    });
+}
+
+const btnSendAnnouncement = document.getElementById('btn-send-announcement');
+if(btnSendAnnouncement) {
+    btnSendAnnouncement.addEventListener('click', () => {
+        const nuevoCodigo = document.getElementById('tutor-message').value.trim();
+        set(ref(db, 'cursos/' + cursoActivo), {
+            codigoMeet: nuevoCodigo
+        }).then(() => {
+            const successMsg = document.getElementById('tutor-success-msg');
+            if(successMsg) {
+                successMsg.style.display = 'block';
+                setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
+            }
+        });
+    });
+}
+
+function mostrarPanelAlumno() {
+    if(stepAlumnoDashboard) stepAlumnoDashboard.style.display = 'block';
+    const cursoRef = ref(db, 'cursos/' + cursoActivo);
+    
+    FirebaseListener = onValue(cursoRef, (snapshot) => {
+        const data = snapshot.val();
+        const inputAlumno = document.getElementById('alumno-received-message');
+        if (inputAlumno) {
+            if (data && data.codigoMeet && data.codigoMeet.trim() !== '') {
+                inputAlumno.value = data.codigoMeet;
+            } else {
+                inputAlumno.value = "No hay códigos asignados";
+            }
+        }
+    });
+}
+
+const btnCopyCode = document.getElementById('btn-copy-code');
+if(btnCopyCode) {
+    btnCopyCode.addEventListener('click', () => {
+        const inputAlumno = document.getElementById('alumno-received-message');
+        if (inputAlumno && inputAlumno.value !== "No hay códigos asignados" && inputAlumno.value !== "") {
+            navigator.clipboard.writeText(inputAlumno.value).then(() => alert('¡Código copiado al portapapeles!'));
+        }
+    });
+}
+
+const btnGoToMeet = document.getElementById('btn-go-to-meet');
+if(btnGoToMeet) {
+    btnGoToMeet.addEventListener('click', () => {
+        const inputAlumno = document.getElementById('alumno-received-message').value;
+        if (inputAlumno && inputAlumno !== "No hay códigos asignados" && inputAlumno.trim() !== "") {
+            const urlFinal = inputAlumno.startsWith('http') ? inputAlumno : `https://meet.google.com/${inputAlumno}`;
+            window.open(urlFinal, '_blank');
+        } else {
+            alert('Aún no hay una clase activa asignada por tu tutor.');
+        }
+    });
+}
+
+// Lógica de Administrador
+const modalAdmin = document.getElementById('modal-admin-password');
+const btnAbrirAdmin = document.getElementById('btn-abrir-admin');
+const closeModalAdmin = document.getElementById('close-modal-admin');
+const btnSubmitAdminPass = document.getElementById('btn-submit-admin-pass');
+const inputAdminPass = document.getElementById('input-admin-pass');
+const adminErrorMsg = document.getElementById('admin-error-msg');
+
+if(btnAbrirAdmin) {
+    btnAbrirAdmin.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(modalAdmin) {
+            modalAdmin.style.display = 'flex';
+            if(inputAdminPass) inputAdminPass.value = '';
+            if(adminErrorMsg) adminErrorMsg.style.display = 'none';
+            if(inputAdminPass) inputAdminPass.focus();
+        }
+    });
+}
+
+if(closeModalAdmin) {
+    closeModalAdmin.addEventListener('click', () => {
+        if(modalAdmin) modalAdmin.style.display = 'none';
+    });
+}
+
+function verificarAdmin() {
+    const passMaestra = "AdminEduca2026"; 
+    if(inputAdminPass && inputAdminPass.value.trim() === passMaestra) {
+        window.location.href = "admin.html";
+    } else if(adminErrorMsg) {
+        adminErrorMsg.style.display = 'block';
+    }
+}
+
+if(btnSubmitAdminPass) {
+    btnSubmitAdminPass.addEventListener('click', verificarAdmin);
+    if(inputAdminPass) {
+        inputAdminPass.addEventListener('keypress', (e) => { 
+            if(e.key === 'Enter') verificarAdmin(); 
+        });
+    }
+}
