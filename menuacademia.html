@@ -170,24 +170,7 @@
 
   
     <script type="module" src="JavaScript.js"></script>
-     <script>
-    
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
 
-   
-    document.addEventListener('keydown', function(e) {
-        if (
-            e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-            (e.ctrlKey && e.key === 'U')
-        ) {
-            e.preventDefault();
-            alert('Esta acción está bloqueada por seguridad.');
-        }
-    });
-</script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/25/01/20260625014110-NWXRZUE1.js" defer></script>
 </body>
