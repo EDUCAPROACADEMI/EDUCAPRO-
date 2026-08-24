@@ -46,7 +46,7 @@
         </main>
     </div>
 
-    <!-- Modal de Contraseña obligatorio en cada vista de curso -->
+    
     <div id="modal-password" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
@@ -86,12 +86,12 @@
 
     <script type="module" src="JavaScript.js"></script>
     <script>
-    // 1. Bloquear el clic derecho para que no salga el menú de "Ver código fuente" o "Inspeccionar"
+ 
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
 
-    // 2. Bloquear atajos de teclado comunes (F12, Ctrl+U, Ctrl+Shift+I, etc.)
+   
     document.addEventListener('keydown', function(e) {
         if (
             e.key === 'F12' || 
